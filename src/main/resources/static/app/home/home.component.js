@@ -9,13 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var shared_session_service_1 = require("../shared/shared-session.service");
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(_sessionService) {
+        this._sessionService = _sessionService;
         this.isLogin = false;
+        console.log('inside constructor of HomeComponent..');
+        console.log('is user login from HomeComponent: ' + this._sessionService.isLoggedIn());
     }
     HomeComponent.prototype.ngOnInit = function () {
         //if no session or not login, show the login UI
-        console.log("oninit HomeComponent xxxx...");
+        console.log("oninit HomeComponent...");
     };
     return HomeComponent;
 }());
@@ -23,7 +27,7 @@ HomeComponent = __decorate([
     core_1.Component({
         templateUrl: 'app/home/home.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [shared_session_service_1.SessionService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

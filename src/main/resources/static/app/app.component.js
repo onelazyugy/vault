@@ -9,22 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var shared_session_service_1 = require("./shared/shared-session.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_sessionService) {
+        this._sessionService = _sessionService;
         this.isLogin = true;
+        console.log('inside constructor of AppComponent...');
     }
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 
-        console.log("oninit AppComponent...");
+        var isUserLogin = this._sessionService.isLoggedIn();
+        console.log("oninit AppComponent... isUserLogin: " + isUserLogin);
     };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'vault',
-        templateUrl: 'app/app.component.html'
+        templateUrl: 'app/app.component.html',
+        providers: [shared_session_service_1.SessionService]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [shared_session_service_1.SessionService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
