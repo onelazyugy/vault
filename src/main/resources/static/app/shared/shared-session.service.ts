@@ -7,10 +7,19 @@ export class SessionService {
 
     constructor () {
         console.log('inside constructor of SessionService');
-        if(1 == 1) {
+    }
+
+    setLoginStatus(status:boolean){
+        console.log('inside init method of SessionService')
+        this._status = status;
+        console.log('this._status is set to: ' + this._status);
+        if(this._status){
+            console.log('inside if');
             this._status = true;
+        }else{
+            console.log('inside else');
+            this._status = false;
         }
-        console.log("New SessionService");
     }
 
     isLoggedIn() {

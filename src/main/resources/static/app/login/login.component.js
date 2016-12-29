@@ -12,7 +12,11 @@ var core_1 = require("@angular/core");
 var LoginComponent = (function () {
     function LoginComponent() {
         this.panelTitle = 'Login';
+        this.user = { 'username': '', 'password': '' };
     }
+    LoginComponent.prototype.login = function () {
+        console.log('login button clicked user is: ' + JSON.stringify(this.user));
+    };
     return LoginComponent;
 }());
 LoginComponent = __decorate([

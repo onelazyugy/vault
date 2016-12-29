@@ -14,7 +14,9 @@ var AppComponent = (function () {
     function AppComponent(_sessionService) {
         this._sessionService = _sessionService;
         this.isLogin = true;
+        this._sessionService.setLoginStatus(false);
         console.log('inside constructor of AppComponent...');
+        this.isLogin = this._sessionService.isLoggedIn();
     }
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 

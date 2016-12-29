@@ -13,11 +13,20 @@ var core_1 = require("@angular/core");
 var SessionService = (function () {
     function SessionService() {
         console.log('inside constructor of SessionService');
-        if (1 == 1) {
+    }
+    SessionService.prototype.setLoginStatus = function (status) {
+        console.log('inside init method of SessionService');
+        this._status = status;
+        console.log('this._status is set to: ' + this._status);
+        if (this._status) {
+            console.log('inside if');
             this._status = true;
         }
-        console.log("New SessionService");
-    }
+        else {
+            console.log('inside else');
+            this._status = false;
+        }
+    };
     SessionService.prototype.isLoggedIn = function () {
         return this._status;
     };

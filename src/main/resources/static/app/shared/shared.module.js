@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
+var forms_1 = require("@angular/forms");
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -17,9 +19,14 @@ var SharedModule = (function () {
 SharedModule = __decorate([
     core_1.NgModule({
         declarations: [],
-        imports: [],
+        imports: [
+            common_1.CommonModule
+        ],
         //define what we want to share
-        exports: []
+        exports: [
+            forms_1.FormsModule,
+            common_1.CommonModule //ngFor and ngIf
+        ]
     }),
     __metadata("design:paramtypes", [])
 ], SharedModule);
