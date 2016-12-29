@@ -6,8 +6,10 @@ import { Component, OnInit} from '@angular/core';
 })
 
 export class AppComponent implements OnInit{
-   ngOnInit(): void {
-       //if no session or not login, show the login UI
+    isLogin:boolean = true;
+
+    ngOnInit(): void {
+       //if no session or not login, don't show Admin URL 
        console.log("oninit AppComponent...");
     }
 }

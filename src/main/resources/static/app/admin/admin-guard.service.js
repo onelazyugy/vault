@@ -9,21 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var HomeComponent = (function () {
-    function HomeComponent() {
+var router_1 = require("@angular/router");
+var AdminRouteGuard = (function () {
+    function AdminRouteGuard(_router) {
+        this._router = _router;
         this.isLogin = false;
     }
-    HomeComponent.prototype.ngOnInit = function () {
-        //if no session or not login, show the login UI
-        console.log("oninit HomeComponent xxxx...");
+    AdminRouteGuard.prototype.canActivate = function (route) {
+        console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
+        return true;
     };
-    return HomeComponent;
+    return AdminRouteGuard;
 }());
-HomeComponent = __decorate([
-    core_1.Component({
-        templateUrl: 'app/home/home.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], HomeComponent);
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+AdminRouteGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], AdminRouteGuard);
+exports.AdminRouteGuard = AdminRouteGuard;
+//# sourceMappingURL=admin-guard.service.js.map

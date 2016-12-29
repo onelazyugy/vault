@@ -8,7 +8,7 @@
                     </a>
                 </div>
                 <ul class='nav navbar-nav'>
-                    <li><a [routerLink]="['/admin']">Admin</a></li>
+                    <li *ngIf="isLogin"><a [routerLink]="['/admin']">Admin</a></li>
                 </ul>
             </div>
         </nav>

@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var AppComponent = (function () {
     function AppComponent() {
+        this.isLogin = true;
     }
     AppComponent.prototype.ngOnInit = function () {
-        //if no session or not login, show the login UI
+        //if no session or not login, don't show Admin URL 
         console.log("oninit AppComponent...");
     };
     return AppComponent;

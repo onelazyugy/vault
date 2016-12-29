@@ -1,3 +1,8 @@
 <div class='container'>
-    <search></search>
+    <div *ngIf='isLogin'>
+        <search></search>
+    </div>
+    <div *ngIf='!isLogin'>
+        <login></login>
+    </div>
 </div>
