@@ -8,6 +8,7 @@ import { SessionService } from '../shared/shared-session.service';
 
 export class HomeComponent implements OnInit{
     isLogin:boolean = false;
+
     constructor(private _sessionService: SessionService){
         console.log('inside constructor of HomeComponent..');
         this.isLogin = this._sessionService.isLoggedIn();
@@ -16,5 +17,10 @@ export class HomeComponent implements OnInit{
     ngOnInit(): void {
        //if no session or not login, show the login UI
        console.log("oninit HomeComponent...");
+    }
+
+    getChildMessage(message: boolean): void {
+        console.log("parent received from login child: " + message);
+        this.isLogin = message;
     }
 }

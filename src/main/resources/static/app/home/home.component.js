@@ -22,6 +22,10 @@ var HomeComponent = (function () {
         //if no session or not login, show the login UI
         console.log("oninit HomeComponent...");
     };
+    HomeComponent.prototype.getChildMessage = function (message) {
+        console.log("parent received from login child: " + message);
+        this.isLogin = message;
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([

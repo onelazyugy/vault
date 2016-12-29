@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 //http://stackoverflow.com/questions/36364365/angular2-central-session-service
+//http://stackoverflow.com/questions/37073415/emit-event-through-nested-components-in-angular2
+//https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#bidirectional-service
 var core_1 = require("@angular/core");
 var SessionService = (function () {
     function SessionService() {

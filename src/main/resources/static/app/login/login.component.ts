@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 import { SessionService } from '../shared/shared-session.service';
 import { IUser } from './user';
@@ -14,6 +14,8 @@ export class LoginComponent {
     user: IUser = {'username': '','password': ''};
     messageLabel: string = '';
 
+    @Output() nofityParent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     constructor(private _sessionService: SessionService){
        
     }
@@ -24,6 +26,8 @@ export class LoginComponent {
             if(this.user.password != '' && this.user.username != ''){
                 this._sessionService.setLoginStatus(true);    
                 this.messageLabel = 'success';
+
+                this.nofityParent.emit(true);
             } else {
                 this.messageLabel = 'fail';
             }

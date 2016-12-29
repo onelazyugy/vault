@@ -3,6 +3,6 @@
         <search></search>
     </div>
     <div *ngIf='!isLogin'>
-        <login></login>
+        <login (nofityParent)="getChildMessage($event)"></login>
     </div>
 </div>

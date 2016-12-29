@@ -1,4 +1,6 @@
 //http://stackoverflow.com/questions/36364365/angular2-central-session-service
+//http://stackoverflow.com/questions/37073415/emit-event-through-nested-components-in-angular2
+//https://angular.io/docs/ts/latest/cookbook/component-communication.html#!#bidirectional-service
 import {Injectable} from '@angular/core';
 
 @Injectable()

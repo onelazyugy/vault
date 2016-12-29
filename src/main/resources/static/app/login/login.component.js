@@ -16,6 +16,7 @@ var LoginComponent = (function () {
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '' };
         this.messageLabel = '';
+        this.nofityParent = new core_1.EventEmitter();
     }
     LoginComponent.prototype.login = function () {
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
@@ -23,6 +24,7 @@ var LoginComponent = (function () {
             if (this.user.password != '' && this.user.username != '') {
                 this._sessionService.setLoginStatus(true);
                 this.messageLabel = 'success';
+                this.nofityParent.emit(true);
             }
             else {
                 this.messageLabel = 'fail';
@@ -35,6 +37,10 @@ var LoginComponent = (function () {
     };
     return LoginComponent;
 }());
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], LoginComponent.prototype, "nofityParent", void 0);
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'login',
