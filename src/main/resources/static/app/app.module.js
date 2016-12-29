@@ -42,7 +42,7 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             home_component_1.HomeComponent,
-            admin_component_1.AdminComponent
+            admin_component_1.AdminComponent,
         ],
         bootstrap: [
             app_component_1.AppComponent

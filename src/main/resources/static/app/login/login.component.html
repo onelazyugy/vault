@@ -14,7 +14,8 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" [(ngModel)]="user.password" class="form-control" placeholder="password" required>
-                </div>        
+                </div>      
+                <label>{{messageLabel}}</label>  
                 <button (click)="login()" class="btn btn-primary pull-right">LOGIN</button>               
             </div>
         </div>

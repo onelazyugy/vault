@@ -12,20 +12,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var SessionService = (function () {
     function SessionService() {
+        this._status = false;
         console.log('inside constructor of SessionService');
     }
     SessionService.prototype.setLoginStatus = function (status) {
-        console.log('inside init method of SessionService');
+        console.log('inside setLoginStatus method of SessionService');
         this._status = status;
-        console.log('this._status is set to: ' + this._status);
         if (this._status) {
-            console.log('inside if');
             this._status = true;
         }
         else {
-            console.log('inside else');
             this._status = false;
         }
+        console.log('this._status is set to: ' + this._status);
     };
     SessionService.prototype.isLoggedIn = function () {
         return this._status;

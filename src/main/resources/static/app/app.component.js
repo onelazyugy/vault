@@ -13,10 +13,8 @@ var shared_session_service_1 = require("./shared/shared-session.service");
 var AppComponent = (function () {
     function AppComponent(_sessionService) {
         this._sessionService = _sessionService;
-        this.isLogin = true;
-        this._sessionService.setLoginStatus(false);
+        this.isLogin = false;
         console.log('inside constructor of AppComponent...');
-        this.isLogin = this._sessionService.isLoggedIn();
     }
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 

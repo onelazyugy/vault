@@ -3,23 +3,21 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class SessionService {
-    private _status:boolean;
+    private _status:boolean = false;
 
     constructor () {
         console.log('inside constructor of SessionService');
     }
 
     setLoginStatus(status:boolean){
-        console.log('inside init method of SessionService')
+        console.log('inside setLoginStatus method of SessionService')
         this._status = status;
-        console.log('this._status is set to: ' + this._status);
         if(this._status){
-            console.log('inside if');
             this._status = true;
-        }else{
-            console.log('inside else');
+        } else{
             this._status = false;
         }
+         console.log('this._status is set to: ' + this._status);
     }
 
     isLoggedIn() {

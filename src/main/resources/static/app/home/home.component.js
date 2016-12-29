@@ -15,8 +15,8 @@ var HomeComponent = (function () {
         this._sessionService = _sessionService;
         this.isLogin = false;
         console.log('inside constructor of HomeComponent..');
-        console.log('is user login from HomeComponent: ' + this._sessionService.isLoggedIn());
         this.isLogin = this._sessionService.isLoggedIn();
+        console.log('isLogin flag is: ' + this.isLogin);
     }
     HomeComponent.prototype.ngOnInit = function () {
         //if no session or not login, show the login UI

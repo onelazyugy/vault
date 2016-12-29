@@ -12,8 +12,24 @@ import { IUser } from './user';
 export class LoginComponent {
     panelTitle: string = 'Login';
     user: IUser = {'username': '','password': ''};
+    messageLabel: string = '';
+
+    constructor(private _sessionService: SessionService){
+       
+    }
 
     login(){
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
+        if(this.user){
+            if(this.user.password != '' && this.user.username != ''){
+                this._sessionService.setLoginStatus(true);    
+                this.messageLabel = 'success';
+            } else {
+                this.messageLabel = 'fail';
+            }
+        } else {
+            this.messageLabel = 'fail';
+        }
+        console.log('after login, status is: ' + this._sessionService.isLoggedIn());
     }
 }

@@ -9,13 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var shared_session_service_1 = require("../shared/shared-session.service");
 var LoginComponent = (function () {
-    function LoginComponent() {
+    function LoginComponent(_sessionService) {
+        this._sessionService = _sessionService;
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '' };
+        this.messageLabel = '';
     }
     LoginComponent.prototype.login = function () {
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
+        if (this.user) {
+            if (this.user.password != '' && this.user.username != '') {
+                this._sessionService.setLoginStatus(true);
+                this.messageLabel = 'success';
+            }
+            else {
+                this.messageLabel = 'fail';
+            }
+        }
+        else {
+            this.messageLabel = 'fail';
+        }
+        console.log('after login, status is: ' + this._sessionService.isLoggedIn());
     };
     return LoginComponent;
 }());
@@ -24,7 +40,7 @@ LoginComponent = __decorate([
         selector: 'login',
         templateUrl: 'app/login/login.component.html'
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [shared_session_service_1.SessionService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

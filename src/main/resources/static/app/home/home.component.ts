@@ -10,8 +10,8 @@ export class HomeComponent implements OnInit{
     isLogin:boolean = false;
     constructor(private _sessionService: SessionService){
         console.log('inside constructor of HomeComponent..');
-        console.log('is user login from HomeComponent: ' + this._sessionService.isLoggedIn());
         this.isLogin = this._sessionService.isLoggedIn();
+        console.log('isLogin flag is: ' + this.isLogin);
     }
     ngOnInit(): void {
        //if no session or not login, show the login UI

@@ -28,7 +28,7 @@ import { AdminComponent } from './admin/admin.component';
   declarations: [ 
     AppComponent,
     HomeComponent, 
-    AdminComponent
+    AdminComponent,
   ],
   bootstrap: [ 
     AppComponent 
