@@ -1,9 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 import { IUser } from './user';
-
 import { LoginService } from './login.service';
-
 
 @Component({
     selector: 'login',
@@ -17,21 +15,16 @@ export class LoginComponent {
     user: IUser = {'username': '','password': ''};
     messageLabel: string = '';
 
-    messageToParent: string = 'no message';
-
-    constructor(private loginService: LoginService){
-
-    }
+    constructor(private loginService: LoginService){}
 
     login(){
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
         if(this.user){
             if(this.user.password != '' && this.user.username != ''){
                 this.messageLabel = 'success';
-                
-                let messageToParent = 'I AM A CHILD MESSAGE TO MY PARENTS';
+                //push to message parent
+                let messageToParent = `${this.user.username}`;
                 this.loginService.announceUserIsLogin(messageToParent);
-
             } else {
                 this.messageLabel = 'fail';
             }

@@ -16,14 +16,14 @@ var LoginComponent = (function () {
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '' };
         this.messageLabel = '';
-        this.messageToParent = 'no message';
     }
     LoginComponent.prototype.login = function () {
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
         if (this.user) {
             if (this.user.password != '' && this.user.username != '') {
                 this.messageLabel = 'success';
-                var messageToParent = 'I AM A CHILD MESSAGE TO MY PARENTS';
+                //push to message parent
+                var messageToParent = "" + this.user.username;
                 this.loginService.announceUserIsLogin(messageToParent);
             }
             else {

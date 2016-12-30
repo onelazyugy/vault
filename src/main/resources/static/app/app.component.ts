@@ -13,14 +13,14 @@ export class AppComponent implements OnInit, OnDestroy{
     isLogin:boolean = false;
 
     subscription: Subscription;
-    message = '<no message>';
+    messageFromChild = '';
 
     constructor(private loginService: LoginService){
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
-            message =>{
-                this.message = message;      
-                console.log("MESSAGE FROM CHILD: " + this.message);  
+            messageFromChild =>{
+                this.messageFromChild = messageFromChild;      
+                console.log("MESSAGE FROM CHILD: " + this.messageFromChild);  
             });
     }
     

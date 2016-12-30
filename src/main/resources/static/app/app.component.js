@@ -15,11 +15,11 @@ var AppComponent = (function () {
         var _this = this;
         this.loginService = loginService;
         this.isLogin = false;
-        this.message = '<no message>';
+        this.messageFromChild = '';
         console.log('inside constructor of AppComponent...');
-        this.subscription = loginService.userLoginAnnounced$.subscribe(function (message) {
-            _this.message = message;
-            console.log("MESSAGE FROM CHILD: " + _this.message);
+        this.subscription = loginService.userLoginAnnounced$.subscribe(function (messageFromChild) {
+            _this.messageFromChild = messageFromChild;
+            console.log("MESSAGE FROM CHILD: " + _this.messageFromChild);
         });
     }
     AppComponent.prototype.ngOnInit = function () {

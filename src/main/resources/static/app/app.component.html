@@ -9,7 +9,9 @@
                 </div>
                 <ul class='nav navbar-nav'>
                     <li *ngIf="isLogin"><a [routerLink]="['/admin']">Admin</a></li>
-                    <li>{{message}}</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{messageFromChild}}</a></li>                
                 </ul>
             </div>
         </nav>
