@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var login_service_1 = require("./login.service");
+var user_auth_service_1 = require("../services/user-auth.service");
 var LoginComponent = (function () {
-    function LoginComponent(loginService) {
+    function LoginComponent(loginService, userAuthService) {
         this.loginService = loginService;
+        this.userAuthService = userAuthService;
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '', isLogin: false };
         this.messageLabel = '';
@@ -20,8 +22,14 @@ var LoginComponent = (function () {
     LoginComponent.prototype.login = function () {
         console.log('login button clicked....');
         if (this.user) {
-            //call backend to verify the credentials
             if (this.user.password != '' && this.user.username != '') {
+                //call backend to verify the credentials
+                //let uxer: IUser;
+                var msg_1;
+                var error = void 0;
+                this.userAuthService.login(this.user).subscribe(function (message) { return msg_1 = message; }, function (error) { return error; });
+                console.log("msg: " + msg_1);
+                //
                 this.user.isLogin = true;
                 this.messageLabel = 'success';
                 //push to message parents but empty the password first
@@ -42,9 +50,9 @@ LoginComponent = __decorate([
     core_1.Component({
         selector: 'login',
         templateUrl: 'app/login/login.component.html',
-        providers: []
+        providers: [user_auth_service_1.UserAuthService]
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService])
+    __metadata("design:paramtypes", [login_service_1.LoginService, user_auth_service_1.UserAuthService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map
