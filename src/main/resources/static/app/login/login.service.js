@@ -18,9 +18,9 @@ var LoginService = (function () {
         this.userLoginAnnounced$ = this.isUserLogin.asObservable();
     }
     //Service message commands
-    LoginService.prototype.announceUserIsLogin = function (message) {
-        console.log('announceUserIsLogin() method and message is: ' + message);
-        this.isUserLogin.next(message);
+    LoginService.prototype.announceUserIsLogin = function (user) {
+        console.log('announceUserIsLogin() method and message is: ' + JSON.stringify(user));
+        this.isUserLogin.next(user);
     };
     return LoginService;
 }());

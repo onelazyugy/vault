@@ -3,6 +3,8 @@ import { Component, OnInit, Input, OnDestroy} from '@angular/core';
 import { LoginService } from './login/login.service';
 import { Subscription }   from 'rxjs/Subscription';
 
+import { IUser } from '../app/login/user';
+
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
@@ -13,14 +15,17 @@ export class AppComponent implements OnInit, OnDestroy{
     isLogin:boolean = false;
 
     subscription: Subscription;
-    messageFromChild = '';
+    user: IUser;
+
+    userName: string;
 
     constructor(private loginService: LoginService){
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
-            messageFromChild =>{
-                this.messageFromChild = messageFromChild;      
-                console.log("MESSAGE FROM CHILD: " + this.messageFromChild);  
+            user =>{
+                console.log('user object from child is: ' + JSON.stringify(user));
+                this.userName = user.username;      
+                console.log("MESSAGE FROM CHILD: " + this.userName);  
             });
     }
     

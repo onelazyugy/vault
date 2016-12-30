@@ -23,10 +23,9 @@ var LoginComponent = (function () {
             if (this.user.password != '' && this.user.username != '') {
                 this.user.isLogin = true;
                 this.messageLabel = 'success';
-                console.log("user json: " + JSON.stringify(this.user));
                 //push to message parent
                 var messageToParent = "" + this.user.username;
-                this.loginService.announceUserIsLogin(messageToParent);
+                this.loginService.announceUserIsLogin(this.user);
             }
             else {
                 this.messageLabel = 'fail';
