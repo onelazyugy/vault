@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var login_service_1 = require("./login.service");
+var login_observable_service_1 = require("./login-observable.service");
 var user_auth_service_1 = require("../services/user-auth.service");
 var LoginComponent = (function () {
     function LoginComponent(loginService, userAuthService) {
@@ -57,7 +57,7 @@ LoginComponent = __decorate([
         templateUrl: 'app/login/login.component.html',
         providers: [user_auth_service_1.UserAuthService]
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService, user_auth_service_1.UserAuthService])
+    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, user_auth_service_1.UserAuthService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

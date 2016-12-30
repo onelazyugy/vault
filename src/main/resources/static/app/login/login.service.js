@@ -10,23 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var Subject_1 = require("rxjs/Subject");
-var LoginService = (function () {
-    function LoginService() {
+var LoginObservableService = (function () {
+    function LoginObservableService() {
         //Observable string sources
         this.isUserLogin = new Subject_1.Subject();
         //Observable string streams
         this.userLoginAnnounced$ = this.isUserLogin.asObservable();
     }
     //Service message commands
-    LoginService.prototype.announceUserIsLogin = function (user) {
+    LoginObservableService.prototype.announceUserIsLogin = function (user) {
         console.log('announceUserIsLogin() method and message is: ' + JSON.stringify(user));
         this.isUserLogin.next(user);
     };
-    return LoginService;
+    return LoginObservableService;
 }());
-LoginService = __decorate([
+LoginObservableService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [])
-], LoginService);
-exports.LoginService = LoginService;
+], LoginObservableService);
+exports.LoginObservableService = LoginObservableService;
 //# sourceMappingURL=login.service.js.map

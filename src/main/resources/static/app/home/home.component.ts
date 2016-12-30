@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { LoginService } from '../login/login.service';
+import { LoginObservableService } from '../login/login-observable.service';
 import { Subscription }   from 'rxjs/Subscription';
 
 import { IUser } from '../login/user';
@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     subscription: Subscription;
     user: IUser;
 
-    constructor(private loginService: LoginService){
+    constructor(private loginService: LoginObservableService){
         console.log('inside constructor of HomeComponent..');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
             user =>{

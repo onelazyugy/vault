@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
 import { IUser } from './user';
-import { LoginService } from './login.service';
+import { LoginObservableService } from './login-observable.service';
 import { UserAuthService } from '../services/user-auth.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent {
     user: IUser = {'username': '','password': '', isLogin: false};
     messageLabel: string = '';
 
-    constructor(private loginService: LoginService, private userAuthService: UserAuthService){}
+    constructor(private loginService: LoginObservableService, private userAuthService: UserAuthService){}
 
     login(){
         console.log('login button clicked....');

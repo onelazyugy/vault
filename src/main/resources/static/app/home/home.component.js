@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var login_service_1 = require("../login/login.service");
+var login_observable_service_1 = require("../login/login-observable.service");
 var HomeComponent = (function () {
     function HomeComponent(loginService) {
         var _this = this;
@@ -37,7 +37,7 @@ HomeComponent = __decorate([
         templateUrl: 'app/home/home.component.html',
         providers: [] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService])
+    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map
