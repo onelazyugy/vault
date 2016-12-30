@@ -32,6 +32,7 @@ export class AppComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
        //if no session or not login, don't show Admin URL 
        console.log("oninit AppComponent..." );
+       //call backend server to check if he/she is login or not when refresh page
     }
 
     ngOnDestroy() {

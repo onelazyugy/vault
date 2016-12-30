@@ -25,6 +25,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 
         console.log("oninit AppComponent...");
+        //call backend server to check if he/she is login or not when refresh page
     };
     AppComponent.prototype.ngOnDestroy = function () {
         // prevent memory leak when component destroyed

@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy{
     ngOnInit(): void {
        //if no session or not login, show the login UI
        console.log("oninit HomeComponent...");
+       //call backend server to check if he/she is login or not when refresh page
     }
 
     ngOnDestroy() {

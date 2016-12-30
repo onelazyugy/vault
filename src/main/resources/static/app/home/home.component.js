@@ -24,6 +24,7 @@ var HomeComponent = (function () {
     HomeComponent.prototype.ngOnInit = function () {
         //if no session or not login, show the login UI
         console.log("oninit HomeComponent...");
+        //call backend server to check if he/she is login or not when refresh page
     };
     HomeComponent.prototype.ngOnDestroy = function () {
         // prevent memory leak when component destroyed
