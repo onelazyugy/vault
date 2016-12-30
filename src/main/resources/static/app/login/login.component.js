@@ -14,14 +14,16 @@ var LoginComponent = (function () {
     function LoginComponent(loginService) {
         this.loginService = loginService;
         this.panelTitle = 'Login';
-        this.user = { 'username': '', 'password': '' };
+        this.user = { 'username': '', 'password': '', isLogin: false };
         this.messageLabel = '';
     }
     LoginComponent.prototype.login = function () {
-        console.log('login button clicked user is: ' + JSON.stringify(this.user));
+        console.log('login button clicked....');
         if (this.user) {
             if (this.user.password != '' && this.user.username != '') {
+                this.user.isLogin = true;
                 this.messageLabel = 'success';
+                console.log("user json: " + JSON.stringify(this.user));
                 //push to message parent
                 var messageToParent = "" + this.user.username;
                 this.loginService.announceUserIsLogin(messageToParent);

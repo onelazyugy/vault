@@ -12,16 +12,18 @@ import { LoginService } from './login.service';
 
 export class LoginComponent {
     panelTitle: string = 'Login';
-    user: IUser = {'username': '','password': ''};
+    user: IUser = {'username': '','password': '', isLogin: false};
     messageLabel: string = '';
 
     constructor(private loginService: LoginService){}
 
     login(){
-        console.log('login button clicked user is: ' + JSON.stringify(this.user));
+        console.log('login button clicked....');
         if(this.user){
             if(this.user.password != '' && this.user.username != ''){
+                this.user.isLogin = true;
                 this.messageLabel = 'success';
+                console.log("user json: " + JSON.stringify(this.user));
                 //push to message parent
                 let messageToParent = `${this.user.username}`;
                 this.loginService.announceUserIsLogin(messageToParent);
