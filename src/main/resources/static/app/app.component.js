@@ -18,7 +18,7 @@ var AppComponent = (function () {
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(function (user) {
             console.log('user object from child to app component is: ' + JSON.stringify(user));
-            _this.userName = user.username;
+            _this.currentLoggedUser = user.username;
             _this.isShowAdminMenuOption = user.isLogin;
         });
     }

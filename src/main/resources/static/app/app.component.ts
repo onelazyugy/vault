@@ -17,14 +17,14 @@ export class AppComponent implements OnInit, OnDestroy{
     subscription: Subscription;
     user: IUser;
 
-    userName: string;
+    currentLoggedUser: string;
 
     constructor(private loginService: LoginService){
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
             user =>{
                 console.log('user object from child to app component is: ' + JSON.stringify(user));
-                this.userName = user.username;      
+                this.currentLoggedUser = user.username;      
                 this.isShowAdminMenuOption = user.isLogin;
             });
     }
