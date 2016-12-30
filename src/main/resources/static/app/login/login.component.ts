@@ -1,12 +1,15 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
-import { SessionService } from '../shared/shared-session.service';
 import { IUser } from './user';
+
+import { LoginService } from './login.service';
+
 
 @Component({
     selector: 'login',
-    templateUrl: 'app/login/login.component.html'
-    
+    templateUrl: 'app/login/login.component.html',
+
+    providers: []
 })
 
 export class LoginComponent {
@@ -14,26 +17,26 @@ export class LoginComponent {
     user: IUser = {'username': '','password': ''};
     messageLabel: string = '';
 
-    @Output() nofityParent: EventEmitter<boolean> = new EventEmitter<boolean>();
+    messageToParent: string = 'no message';
 
-    constructor(private _sessionService: SessionService){
-       
+    constructor(private loginService: LoginService){
+
     }
 
     login(){
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
         if(this.user){
             if(this.user.password != '' && this.user.username != ''){
-                this._sessionService.setLoginStatus(true);    
                 this.messageLabel = 'success';
+                
+                let messageToParent = 'I AM A CHILD MESSAGE TO MY PARENTS';
+                this.loginService.announceUserIsLogin(messageToParent);
 
-                this.nofityParent.emit(true);
             } else {
                 this.messageLabel = 'fail';
             }
         } else {
             this.messageLabel = 'fail';
         }
-        console.log('after login, status is: ' + this._sessionService.isLoggedIn());
     }
 }

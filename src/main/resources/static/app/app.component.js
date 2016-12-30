@@ -9,17 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var shared_session_service_1 = require("./shared/shared-session.service");
+var login_service_1 = require("./login/login.service");
 var AppComponent = (function () {
-    function AppComponent(_sessionService) {
-        this._sessionService = _sessionService;
+    function AppComponent(loginService) {
+        var _this = this;
+        this.loginService = loginService;
         this.isLogin = false;
+        this.message = '<no message>';
         console.log('inside constructor of AppComponent...');
+        this.subscription = loginService.userLoginAnnounced$.subscribe(function (message) {
+            _this.message = message;
+            console.log("MESSAGE FROM CHILD: " + _this.message);
+        });
     }
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 
-        var isUserLogin = this._sessionService.isLoggedIn();
-        console.log("oninit AppComponent... isUserLogin: " + isUserLogin);
+        console.log("oninit AppComponent...");
+    };
+    AppComponent.prototype.ngOnDestroy = function () {
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
     };
     return AppComponent;
 }());
@@ -27,9 +36,9 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'vault',
         templateUrl: 'app/app.component.html',
-        providers: [shared_session_service_1.SessionService]
+        providers: [login_service_1.LoginService] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [shared_session_service_1.SessionService])
+    __metadata("design:paramtypes", [login_service_1.LoginService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

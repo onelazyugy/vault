@@ -1,22 +1,36 @@
-import { Component, OnInit} from '@angular/core';
-import { SessionService } from './shared/shared-session.service';
+import { Component, OnInit, Input, OnDestroy} from '@angular/core';
+
+import { LoginService } from './login/login.service';
+import { Subscription }   from 'rxjs/Subscription';
 
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
-    providers: [SessionService]
+    providers: [LoginService] //a service would go in that array
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, OnDestroy{
     isLogin:boolean = false;
-    
-    constructor(private _sessionService: SessionService){
+
+    subscription: Subscription;
+    message = '<no message>';
+
+    constructor(private loginService: LoginService){
         console.log('inside constructor of AppComponent...');
+        this.subscription = loginService.userLoginAnnounced$.subscribe(
+            message =>{
+                this.message = message;      
+                console.log("MESSAGE FROM CHILD: " + this.message);  
+            });
     }
     
     ngOnInit(): void {
        //if no session or not login, don't show Admin URL 
-       let isUserLogin = this._sessionService.isLoggedIn();
-       console.log("oninit AppComponent... isUserLogin: " + isUserLogin);
+       console.log("oninit AppComponent..." );
     }
+
+    ngOnDestroy() {
+    // prevent memory leak when component destroyed
+    this.subscription.unsubscribe();
+  }
 }

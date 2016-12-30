@@ -9,22 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var HomeComponent = (function () {
-    function HomeComponent() {
-        this.isLogin = false;
-        console.log('inside constructor of HomeComponent..');
+var Subject_1 = require("rxjs/Subject");
+var LoginService = (function () {
+    function LoginService() {
+        //Observable string sources
+        this.isUserLogin = new Subject_1.Subject();
+        //Observable string streams
+        this.userLoginAnnounced$ = this.isUserLogin.asObservable();
     }
-    HomeComponent.prototype.ngOnInit = function () {
-        //if no session or not login, show the login UI
-        console.log("oninit HomeComponent...");
+    //Service message commands
+    LoginService.prototype.announceUserIsLogin = function (message) {
+        console.log('announceUserIsLogin() method and message is: ' + message);
+        this.isUserLogin.next(message);
     };
-    return HomeComponent;
+    return LoginService;
 }());
-HomeComponent = __decorate([
-    core_1.Component({
-        templateUrl: 'app/home/home.component.html'
-    }),
+LoginService = __decorate([
+    core_1.Injectable(),
     __metadata("design:paramtypes", [])
-], HomeComponent);
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+], LoginService);
+exports.LoginService = LoginService;
+//# sourceMappingURL=login.service.js.map

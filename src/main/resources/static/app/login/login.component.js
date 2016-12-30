@@ -9,22 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var shared_session_service_1 = require("../shared/shared-session.service");
+var login_service_1 = require("./login.service");
 var LoginComponent = (function () {
-    function LoginComponent(_sessionService) {
-        this._sessionService = _sessionService;
+    function LoginComponent(loginService) {
+        this.loginService = loginService;
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '' };
         this.messageLabel = '';
-        this.nofityParent = new core_1.EventEmitter();
+        this.messageToParent = 'no message';
     }
     LoginComponent.prototype.login = function () {
         console.log('login button clicked user is: ' + JSON.stringify(this.user));
         if (this.user) {
             if (this.user.password != '' && this.user.username != '') {
-                this._sessionService.setLoginStatus(true);
                 this.messageLabel = 'success';
-                this.nofityParent.emit(true);
+                var messageToParent = 'I AM A CHILD MESSAGE TO MY PARENTS';
+                this.loginService.announceUserIsLogin(messageToParent);
             }
             else {
                 this.messageLabel = 'fail';
@@ -33,20 +33,16 @@ var LoginComponent = (function () {
         else {
             this.messageLabel = 'fail';
         }
-        console.log('after login, status is: ' + this._sessionService.isLoggedIn());
     };
     return LoginComponent;
 }());
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", core_1.EventEmitter)
-], LoginComponent.prototype, "nofityParent", void 0);
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'login',
-        templateUrl: 'app/login/login.component.html'
+        templateUrl: 'app/login/login.component.html',
+        providers: []
     }),
-    __metadata("design:paramtypes", [shared_session_service_1.SessionService])
+    __metadata("design:paramtypes", [login_service_1.LoginService])
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map
