@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var login_service_1 = require("./login/login.service");
+var user_auth_service_1 = require("../app/services/user-auth.service");
 var AppComponent = (function () {
-    function AppComponent(loginService) {
+    function AppComponent(loginService, userAuthService) {
         var _this = this;
         this.loginService = loginService;
+        this.userAuthService = userAuthService;
         this.isShowAdminMenuOption = false;
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(function (user) {
@@ -22,6 +24,17 @@ var AppComponent = (function () {
             _this.isShowAdminMenuOption = user.isLogin;
         });
     }
+    AppComponent.prototype.logout = function () {
+        var _this = this;
+        console.log('logout clicked!');
+        this.userAuthService.logout().subscribe(function (data) {
+            console.log('data from logout: ' + data);
+            if (data) {
+                console.log('hidding the admin menu since user is logged out');
+                _this.isShowAdminMenuOption = false;
+            }
+        });
+    };
     AppComponent.prototype.ngOnInit = function () {
         //if no session or not login, don't show Admin URL 
         console.log("oninit AppComponent...");
@@ -37,9 +50,9 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'vault',
         templateUrl: 'app/app.component.html',
-        providers: [login_service_1.LoginService] //a service would go in that array
+        providers: [login_service_1.LoginService, user_auth_service_1.UserAuthService] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [login_service_1.LoginService])
+    __metadata("design:paramtypes", [login_service_1.LoginService, user_auth_service_1.UserAuthService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

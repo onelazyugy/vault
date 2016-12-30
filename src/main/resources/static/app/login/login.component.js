@@ -20,24 +20,29 @@ var LoginComponent = (function () {
         this.messageLabel = '';
     }
     LoginComponent.prototype.login = function () {
+        var _this = this;
         console.log('login button clicked....');
         if (this.user) {
             if (this.user.password != '' && this.user.username != '') {
                 //call backend to verify the credentials
-                //let uxer: IUser;
-                var msg_1;
-                var error = void 0;
-                this.userAuthService.login(this.user).subscribe(function (message) { return msg_1 = message; }, function (error) { return error; });
-                console.log("msg: " + msg_1);
-                //
-                this.user.isLogin = true;
-                this.messageLabel = 'success';
-                //push to message parents but empty the password first
-                this.user.password = null;
-                this.loginService.announceUserIsLogin(this.user);
+                this.userAuthService.login(this.user).subscribe(function (data) {
+                    console.log('data from login: ' + data);
+                    if (data) {
+                        _this.messageLabel = 'success';
+                        //push to message parents but empty the password first
+                        _this.user.isLogin = true;
+                        _this.user.password = null;
+                        _this.loginService.announceUserIsLogin(_this.user);
+                    }
+                }, function (error) {
+                    console.log('Error login: ' + error);
+                    _this.user.isLogin = false;
+                    _this.messageLabel = 'failed login';
+                    return false;
+                });
             }
             else {
-                this.messageLabel = 'fail';
+                this.messageLabel = 'field cannot be empty';
             }
         }
         else {

@@ -2,24 +2,22 @@ import { Component, OnInit, OnDestroy} from '@angular/core';
 
 import { LoginService } from './login/login.service';
 import { Subscription }   from 'rxjs/Subscription';
-
 import { IUser } from '../app/login/user';
+import { UserAuthService } from '../app/services/user-auth.service';
 
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
-    providers: [LoginService]//a service would go in that array
+    providers: [LoginService, UserAuthService]//a service would go in that array
 })
 
 export class AppComponent implements OnInit, OnDestroy{
     isShowAdminMenuOption:boolean = false;
-
     subscription: Subscription;
     user: IUser;
-
     currentLoggedUser: string;
 
-    constructor(private loginService: LoginService){
+    constructor(private loginService: LoginService, private userAuthService: UserAuthService){
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
             user =>{
@@ -29,6 +27,21 @@ export class AppComponent implements OnInit, OnDestroy{
             });
     }
     
+    logout(){
+        console.log('logout clicked!');
+        this.userAuthService.logout().subscribe(
+           data => {
+               console.log('data from logout: ' + data);
+               if(data){
+                   console.log('hidding the admin menu since user is logged out');
+                   this.isShowAdminMenuOption = false;
+                   //call home component to show the login ui
+                   
+               }
+           } 
+        );
+    }
+
     ngOnInit(): void {
        //if no session or not login, don't show Admin URL 
        console.log("oninit AppComponent..." );

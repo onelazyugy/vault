@@ -18,15 +18,29 @@ require("rxjs/add/operator/do");
 var UserAuthService = (function () {
     function UserAuthService(_http) {
         this._http = _http;
-        this._loginUrl = "http://localhost:8085/rs/login";
+        this._loginUrl = 'http://localhost:8085/rs/login';
+        this._isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
+        this._logoutUrl = 'http://localhost:8085/rs/logout';
     }
     UserAuthService.prototype.login = function (user) {
         var bodyRequest = JSON.stringify(user);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post(this._loginUrl, bodyRequest, options)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('Login Result: ' + JSON.stringify(data)); })
+            .map(function (res) { return res.json(); })
+            .do(function (data) { return console.log('/login api result: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    UserAuthService.prototype.userStillAlive = function () {
+        return this._http.get(this._isUserStillAliveUrl)
+            .map(function (res) { return res.json(); })
+            .do(function (data) { return console.log('/isUserStillAlive api result: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    UserAuthService.prototype.logout = function () {
+        return this._http.get(this._logoutUrl)
+            .map(function (res) { return res.json(); })
+            .do(function (data) { return console.log('/logout api result: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserAuthService.prototype.handleError = function (error) {

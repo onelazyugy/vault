@@ -23,21 +23,26 @@ export class LoginComponent {
         if(this.user){            
             if(this.user.password != '' && this.user.username != ''){
                 //call backend to verify the credentials
-                //let uxer: IUser;
-                let msg: string;
-                let error: string;
-                this.userAuthService.login(this.user).subscribe(message => msg = message, error=>error);
-                console.log("msg: " + msg);
-                //
-
-
-                this.user.isLogin = true;
-                this.messageLabel = 'success';
-                //push to message parents but empty the password first
-                this.user.password = null;
-                this.loginService.announceUserIsLogin(this.user);
+                this.userAuthService.login(this.user).subscribe(
+                        data => {
+                            console.log('data from login: ' + data);
+                            if(data){
+                                this.messageLabel = 'success';
+                                //push to message parents but empty the password first
+                                this.user.isLogin = true;
+                                this.user.password = null;
+                                this.loginService.announceUserIsLogin(this.user);
+                            }                            
+                        },
+                        error => {
+                            console.log('Error login: ' + error);
+                            this.user.isLogin = false;
+                            this.messageLabel = 'failed login';
+                            return false;
+                        }
+                    );                
             } else {
-                this.messageLabel = 'fail';
+                this.messageLabel = 'field cannot be empty';
             }
         } else {
             this.messageLabel = 'fail';

@@ -11,7 +11,8 @@
                     <li *ngIf="isShowAdminMenuOption"><a [routerLink]="['/admin']">Admin</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li *ngIf="isShowAdminMenuOption"><a href="#"><span class="glyphicon glyphicon-user"></span> {{currentLoggedUser}}</a></li>                
+                    <li *ngIf="isShowAdminMenuOption"><a href="#"><span class="glyphicon glyphicon-user"></span> {{currentLoggedUser}}</a></li>   
+                    <li *ngIf="isShowAdminMenuOption" (click)="logout()"><a><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>               
                 </ul>
             </div>
         </nav>

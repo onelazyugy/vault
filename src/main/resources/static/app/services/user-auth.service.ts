@@ -10,7 +10,9 @@ import { IUser } from '../login/user';
 
 @Injectable()
 export class UserAuthService {
-    private _loginUrl = "http://localhost:8085/rs/login";
+    private _loginUrl = 'http://localhost:8085/rs/login';
+    private _isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
+    private _logoutUrl = 'http://localhost:8085/rs/logout';
 
     constructor(private _http: Http){}
 
@@ -20,13 +22,25 @@ export class UserAuthService {
         let options = new RequestOptions({headers: headers});
 
         return this._http.post(this._loginUrl, bodyRequest, options)
-                .map((response: Response) => <string> response.json())
-                //peak at the response data
-                .do(data => console.log('Login Result: ' + JSON.stringify(data)))
+                .map((res: Response) => <string> res.json())
+                .do(data => console.log('/login api result: ' + JSON.stringify(data)))
                 .catch(this.handleError);   
-        
     }
 
+    userStillAlive(){
+        return this._http.get(this._isUserStillAliveUrl)
+                .map((res: Response) => <IUser> res.json())
+                .do(data => console.log('/isUserStillAlive api result: ' + JSON.stringify(data)))
+                .catch(this.handleError);
+    }
+
+    logout(){
+        return this._http.get(this._logoutUrl)
+                .map((res: Response) => <string> res.json())
+                .do(data => console.log('/logout api result: ' + JSON.stringify(data)))
+                .catch(this.handleError);
+    }
+    
     private handleError(error: Response){
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
