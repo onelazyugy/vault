@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy} from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 
 import { LoginService } from './login/login.service';
 import { Subscription }   from 'rxjs/Subscription';
@@ -8,11 +8,11 @@ import { IUser } from '../app/login/user';
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
-    providers: [LoginService] //a service would go in that array
+    providers: [LoginService]//a service would go in that array
 })
 
 export class AppComponent implements OnInit, OnDestroy{
-    isLogin:boolean = false;
+    isShowAdminMenuOption:boolean = false;
 
     subscription: Subscription;
     user: IUser;
@@ -23,9 +23,9 @@ export class AppComponent implements OnInit, OnDestroy{
         console.log('inside constructor of AppComponent...');
         this.subscription = loginService.userLoginAnnounced$.subscribe(
             user =>{
-                console.log('user object from child is: ' + JSON.stringify(user));
+                console.log('user object from child to app component is: ' + JSON.stringify(user));
                 this.userName = user.username;      
-                console.log("MESSAGE FROM CHILD: " + this.userName);  
+                this.isShowAdminMenuOption = user.isLogin;
             });
     }
     
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy() {
-    // prevent memory leak when component destroyed
-    this.subscription.unsubscribe();
-  }
+        // prevent memory leak when component destroyed
+        this.subscription.unsubscribe();
+    }
 }

@@ -20,11 +20,12 @@ var LoginComponent = (function () {
     LoginComponent.prototype.login = function () {
         console.log('login button clicked....');
         if (this.user) {
+            //call backend to verify the credentials
             if (this.user.password != '' && this.user.username != '') {
                 this.user.isLogin = true;
                 this.messageLabel = 'success';
-                //push to message parent
-                var messageToParent = "" + this.user.username;
+                //push to message parents but empty the password first
+                this.user.password = null;
                 this.loginService.announceUserIsLogin(this.user);
             }
             else {
