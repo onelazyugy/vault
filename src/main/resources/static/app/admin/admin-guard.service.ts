@@ -20,16 +20,14 @@ export class AdminRouteGuard implements CanActivate{
         console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
         return this.userAuthService.isUserLogin().map(
         res => {
-            console.log('response from userStillAlive2 is: ' + res);
+            console.log('response from isUserLogin api returns: ' + res);
             if(res){
-                console.log('userStillAlive2 is returning: ' + res);
                 return true;
-            } else {
-                console.log('userStillAlive2 is returning: ' + res);
-                this._router.navigate(['/home']);
-            }
-        }).catch(() => {
-            console.log('catch block.....');
+            } 
+            this._router.navigate(['/home']);
+            return false;
+        }).catch((err:Error) => {
+            console.log('catch block.....: '+ err);
             this._router.navigate(['/home']);
             return Observable.of(false);
         });

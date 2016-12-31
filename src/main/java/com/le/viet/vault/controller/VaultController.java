@@ -1,10 +1,11 @@
 package com.le.viet.vault.controller;
 
-import com.le.viet.vault.Application;
 import com.le.viet.vault.dao.DAOIfc;
 import com.le.viet.vault.dao.UserDao;
 import com.le.viet.vault.model.User;
 import com.le.viet.vault.user.UserAuth;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpSession;
 @RestController
 @RequestMapping("/rs")
 public class VaultController {
+	//private final Logger LOG = LoggerFactory.getLogger(VaultController.class);
+
 	@RequestMapping(value = "/ping", method = RequestMethod.GET)
 	public String ping(){
 		return "pong";
@@ -21,13 +24,17 @@ public class VaultController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST,  produces= MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean login(@RequestBody User user, HttpServletRequest req){
+		//LOG.debug("STARTED: /login");
 		boolean loginSuccess = new UserAuth().login(user, req);
+		//LOG.debug("END: /login ==> " + loginSuccess);
 		return loginSuccess;
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean logout(HttpServletRequest req){
+		//LOG.debug("STARTED: /logout");
 		boolean result = new UserAuth().logout(req);
+		//LOG.debug("END: /logout ==> " + result);
 		return result;
 	}
 

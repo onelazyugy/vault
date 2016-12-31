@@ -25,17 +25,14 @@ var AdminRouteGuard = (function () {
         //http://stackoverflow.com/questions/37948068/angular-2-routing-canactivate-work-with-observable
         console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
         return this.userAuthService.isUserLogin().map(function (res) {
-            console.log('response from userStillAlive2 is: ' + res);
+            console.log('response from isUserLogin api returns: ' + res);
             if (res) {
-                console.log('userStillAlive2 is returning: ' + res);
                 return true;
             }
-            else {
-                console.log('userStillAlive2 is returning: ' + res);
-                _this._router.navigate(['/home']);
-            }
-        }).catch(function () {
-            console.log('catch block.....');
+            _this._router.navigate(['/home']);
+            return false;
+        }).catch(function (err) {
+            console.log('catch block.....: ' + err);
             _this._router.navigate(['/home']);
             return Observable_1.Observable.of(false);
         });
