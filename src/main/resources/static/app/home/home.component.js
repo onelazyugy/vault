@@ -11,11 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var login_observable_service_1 = require("../login/login-observable.service");
 var logout_observable_service_1 = require("../login/logout-observable.service");
+var user_auth_service_1 = require("../services/user-auth.service");
 var HomeComponent = (function () {
-    function HomeComponent(loginObservableService, logoutObservableService) {
+    function HomeComponent(loginObservableService, logoutObservableService, userAuthService) {
         var _this = this;
         this.loginObservableService = loginObservableService;
         this.logoutObservableService = logoutObservableService;
+        this.userAuthService = userAuthService;
         this.isShowSearchBar = false;
         console.log('inside constructor of HomeComponent..');
         //user login notification
@@ -37,9 +39,24 @@ var HomeComponent = (function () {
         });
     }
     HomeComponent.prototype.ngOnInit = function () {
-        //if no session or not login, show the login UI
+        var _this = this;
         console.log("oninit HomeComponent...");
-        //call backend server to check if he/she is login or not when refresh page
+        //call backend server to check if user is login or not when refresh page
+        var ux;
+        this.userAuthService.userStillAlive().subscribe(function (ux) {
+            console.log('data from userStillAlive: ' + JSON.stringify(ux));
+            if (ux) {
+                var isAlive = ux.userLogin;
+                var currentName = ux.username;
+                console.log('isAlive: ' + isAlive + ' | currentName: ' + currentName);
+                if (isAlive) {
+                    _this.isShowSearchBar = true;
+                    //notify home component the show the search bar
+                    var alive = 'alive';
+                    _this.logoutObservableService.announceUserIsLogout(alive);
+                }
+            }
+        });
     };
     HomeComponent.prototype.ngOnDestroy = function () {
         // prevent memory leak when component destroyed
@@ -50,9 +67,9 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         templateUrl: 'app/home/home.component.html',
-        providers: [] //a service would go in that array
+        providers: [user_auth_service_1.UserAuthService] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService])
+    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map
