@@ -10,8 +10,8 @@ export class LogoutObservableService {
     userLogoutAnnounced$ = this.isUserLogout.asObservable();
 
     //Service message commands
-    announceUserIsLogout(logout: string){
+    announceUserIsLogout(message: string){
         console.log('announceUserIsLogout() method');
-        this.isUserLogout.next(logout);
+        this.isUserLogout.next(message);
     }
 }

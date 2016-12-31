@@ -18,9 +18,9 @@ var LogoutObservableService = (function () {
         this.userLogoutAnnounced$ = this.isUserLogout.asObservable();
     }
     //Service message commands
-    LogoutObservableService.prototype.announceUserIsLogout = function (logout) {
+    LogoutObservableService.prototype.announceUserIsLogout = function (message) {
         console.log('announceUserIsLogout() method');
-        this.isUserLogout.next(logout);
+        this.isUserLogout.next(message);
     };
     return LogoutObservableService;
 }());

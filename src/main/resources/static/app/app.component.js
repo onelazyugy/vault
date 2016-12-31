@@ -20,6 +20,7 @@ var AppComponent = (function () {
         this.userAuthService = userAuthService;
         this.isShowAdminMenuOption = false;
         console.log('inside constructor of AppComponent...');
+        //receive notification from child
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(function (user) {
             console.log('user object from child to app component is: ' + JSON.stringify(user));
             _this.currentLoggedUser = user.username;
@@ -43,7 +44,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
         console.log("oninit AppComponent...");
-        //call backend server to check if he/she is login or not when refresh page
+        //call backend server to check if user is login or not when refresh page
         var ux;
         this.userAuthService.userStillAlive().subscribe(function (ux) {
             console.log('data from userStillAlive: ' + JSON.stringify(ux));
@@ -54,6 +55,9 @@ var AppComponent = (function () {
                 if (isAlive) {
                     _this.isShowAdminMenuOption = true;
                     _this.currentLoggedUser = currentName;
+                    //notify home component the show the search bar
+                    var alive = 'alive';
+                    _this.logoutObservableService.announceUserIsLogout(alive);
                 }
             }
         });

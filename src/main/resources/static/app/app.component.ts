@@ -20,6 +20,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
     constructor(private loginObservableService: LoginObservableService, private logoutObservableService: LogoutObservableService, private userAuthService: UserAuthService){
         console.log('inside constructor of AppComponent...');
+        //receive notification from child
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(
             user =>{
                 console.log('user object from child to app component is: ' + JSON.stringify(user));
@@ -46,7 +47,7 @@ export class AppComponent implements OnInit, OnDestroy{
 
     ngOnInit(): void {
         console.log("oninit AppComponent..." );
-        //call backend server to check if he/she is login or not when refresh page
+        //call backend server to check if user is login or not when refresh page
         let ux: IUser;
         this.userAuthService.userStillAlive().subscribe(
             ux => {
@@ -58,6 +59,9 @@ export class AppComponent implements OnInit, OnDestroy{
                     if(isAlive){
                         this.isShowAdminMenuOption = true;
                         this.currentLoggedUser = currentName;
+                        //notify home component the show the search bar
+                        let alive: string = 'alive';
+                        this.logoutObservableService.announceUserIsLogout(alive);
                     }
                 }
             });

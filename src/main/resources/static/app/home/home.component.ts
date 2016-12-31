@@ -32,7 +32,12 @@ export class HomeComponent implements OnInit, OnDestroy{
             notifyLogout =>{
                 console.log('message from app component to home compoent is: ' + JSON.stringify(notifyLogout));
                 if(notifyLogout === 'logout'){
+                    console.log("user is logged out, hidding the search bar")
                     this.isShowSearchBar = false;
+                }
+                if(notifyLogout === 'alive'){
+                    console.log("user is alive, showing the search bar");
+                    this.isShowSearchBar = true;
                 }
             });
     }

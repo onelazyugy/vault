@@ -27,7 +27,12 @@ var HomeComponent = (function () {
         this.subscription = logoutObservableService.userLogoutAnnounced$.subscribe(function (notifyLogout) {
             console.log('message from app component to home compoent is: ' + JSON.stringify(notifyLogout));
             if (notifyLogout === 'logout') {
+                console.log("user is logged out, hidding the search bar");
                 _this.isShowSearchBar = false;
+            }
+            if (notifyLogout === 'alive') {
+                console.log("user is alive, showing the search bar");
+                _this.isShowSearchBar = true;
             }
         });
     }
