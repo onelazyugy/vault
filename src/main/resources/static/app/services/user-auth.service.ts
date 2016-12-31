@@ -12,11 +12,7 @@ export class UserAuthService {
     private _loginUrl = 'http://localhost:8085/rs/login';
     private _isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
     private _logoutUrl = 'http://localhost:8085/rs/logout';
-
-
-    //test
     private _isUserLoggedIn = 'http://localhost:8085/rs/isUserLoggedIn';
-    //
 
     constructor(private _http: Http){}
 
@@ -37,19 +33,14 @@ export class UserAuthService {
                 .do(data => console.log('/isUserStillAlive api result: ' + JSON.stringify(data)))
                 .catch(this.handleError);
     }
-
-    //
     
-    userStillAlive2(): Observable<boolean> {
+    isUserLogin(): Observable<boolean> {
         console.log('INSIDE userStillAlive2 method');
         return this._http.get(this._isUserLoggedIn)
-                    //.map(response => response.ok)
-                    .map((res: Response)=><boolean> res.json())
+                    .map((res: Response) => <boolean> res.json())
                     .do(data => console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)))
                     .catch(this.handleError);;
     }
-    
-    //
 
     logout(){
         return this._http.get(this._logoutUrl)

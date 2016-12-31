@@ -11,34 +11,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var Observable_1 = require("rxjs/Observable");
-var user_auth_service_1 = require("../services/user-auth.service");
 require("rxjs/add/observable/of");
-//
+var user_auth_service_1 = require("../services/user-auth.service");
 var AdminRouteGuard = (function () {
-    //test
     function AdminRouteGuard(_router, userAuthService) {
         this._router = _router;
         this.userAuthService = userAuthService;
         this.isEnableAdminRoute = false;
         console.log('inside AdminRouteGuard contructor...');
-        console.log('UserAuthService got injected......');
     }
     AdminRouteGuard.prototype.canActivate = function (route) {
         var _this = this;
         //http://stackoverflow.com/questions/37948068/angular-2-routing-canactivate-work-with-observable
         console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
-        return this.userAuthService.userStillAlive2().map(function (e) {
-            console.log('begin of if e is: ' + e);
-            if (e) {
-                console.log('if(e).....');
+        return this.userAuthService.isUserLogin().map(function (res) {
+            console.log('response from userStillAlive2 is: ' + res);
+            if (res) {
+                console.log('userStillAlive2 is returning: ' + res);
                 return true;
+            }
+            else {
+                console.log('userStillAlive2 is returning: ' + res);
+                _this._router.navigate(['/home']);
             }
         }).catch(function () {
             console.log('catch block.....');
             _this._router.navigate(['/home']);
             return Observable_1.Observable.of(false);
         });
-        //return Observable.of(true);
     };
     return AdminRouteGuard;
 }());

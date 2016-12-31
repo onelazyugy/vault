@@ -15,13 +15,11 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
 var UserAuthService = (function () {
-    //
     function UserAuthService(_http) {
         this._http = _http;
         this._loginUrl = 'http://localhost:8085/rs/login';
         this._isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
         this._logoutUrl = 'http://localhost:8085/rs/logout';
-        //test
         this._isUserLoggedIn = 'http://localhost:8085/rs/isUserLoggedIn';
     }
     UserAuthService.prototype.login = function (user) {
@@ -39,8 +37,7 @@ var UserAuthService = (function () {
             .do(function (data) { return console.log('/isUserStillAlive api result: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
-    //
-    UserAuthService.prototype.userStillAlive2 = function () {
+    UserAuthService.prototype.isUserLogin = function () {
         console.log('INSIDE userStillAlive2 method');
         return this._http.get(this._isUserLoggedIn)
             .map(function (res) { return res.json(); })
@@ -48,7 +45,6 @@ var UserAuthService = (function () {
             .catch(this.handleError);
         ;
     };
-    //
     UserAuthService.prototype.logout = function () {
         return this._http.get(this._logoutUrl)
             .map(function (res) { return res.json(); })
