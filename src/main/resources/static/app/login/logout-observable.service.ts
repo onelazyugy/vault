@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject }    from 'rxjs/Subject';
 
-import { IUser } from './user';
-
 @Injectable()
 export class LogoutObservableService {
     //Observable string sources

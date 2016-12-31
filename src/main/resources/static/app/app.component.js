@@ -34,16 +34,29 @@ var AppComponent = (function () {
             if (data) {
                 console.log('hidding the admin menu since user is logged out');
                 _this.isShowAdminMenuOption = false;
-                //call home component to show the login ui
+                //call home component to hide the login ui
                 var logout = 'logout';
                 _this.logoutObservableService.announceUserIsLogout(logout);
             }
         });
     };
     AppComponent.prototype.ngOnInit = function () {
-        //if no session or not login, don't show Admin URL 
+        var _this = this;
         console.log("oninit AppComponent...");
         //call backend server to check if he/she is login or not when refresh page
+        var ux;
+        this.userAuthService.userStillAlive().subscribe(function (ux) {
+            console.log('data from userStillAlive: ' + JSON.stringify(ux));
+            if (ux) {
+                var isAlive = ux.userLogin;
+                var currentName = ux.username;
+                console.log('isAlive: ' + isAlive + ' | currentName: ' + currentName);
+                if (isAlive) {
+                    _this.isShowAdminMenuOption = true;
+                    _this.currentLoggedUser = currentName;
+                }
+            }
+        });
     };
     AppComponent.prototype.ngOnDestroy = function () {
         // prevent memory leak when component destroyed

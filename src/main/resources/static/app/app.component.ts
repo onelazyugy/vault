@@ -36,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy{
                if(data){
                    console.log('hidding the admin menu since user is logged out');
                    this.isShowAdminMenuOption = false;
-                   //call home component to show the login ui
+                   //call home component to hide the login ui
                    let logout: string = 'logout';
                    this.logoutObservableService.announceUserIsLogout(logout);
                }
@@ -45,9 +45,22 @@ export class AppComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit(): void {
-       //if no session or not login, don't show Admin URL 
-       console.log("oninit AppComponent..." );
-       //call backend server to check if he/she is login or not when refresh page
+        console.log("oninit AppComponent..." );
+        //call backend server to check if he/she is login or not when refresh page
+        let ux: IUser;
+        this.userAuthService.userStillAlive().subscribe(
+            ux => {
+                console.log('data from userStillAlive: ' + JSON.stringify(ux));
+                if(ux){
+                    let isAlive: boolean = ux.userLogin;
+                    let currentName: string = ux.username;
+                    console.log('isAlive: ' + isAlive + ' | currentName: ' + currentName);
+                    if(isAlive){
+                        this.isShowAdminMenuOption = true;
+                        this.currentLoggedUser = currentName;
+                    }
+                }
+            });
     }
 
     ngOnDestroy() {
