@@ -20,37 +20,35 @@ export class UserAuthService {
         let bodyRequest = JSON.stringify(user);
         let headers = new Headers({'Content-Type':'application/json'});
         let options = new RequestOptions({headers: headers});
-
         return this._http.post(this._loginUrl, bodyRequest, options)
                 .map((res: Response) => <string> res.json())
-                .do(data => console.log('/login api result: ' + JSON.stringify(data)))
+                .do(data => console.log('/login api result ==>: ' + JSON.stringify(data)))
                 .catch(this.handleError);   
     }
 
     userStillAlive(){
         return this._http.get(this._isUserStillAliveUrl)
                 .map((res: Response) => <IUser> res.json())
-                .do(data => console.log('/isUserStillAlive api result: ' + JSON.stringify(data)))
+                .do(data => console.log('/isUserStillAlive api result ==>: ' + JSON.stringify(data)))
                 .catch(this.handleError);
     }
     
     isUserLogin(): Observable<boolean> {
-        console.log('INSIDE isUserLogin method');
         return this._http.get(this._isUserLoggedIn)
                     .map((res: Response) => <boolean> res.json())
-                    .do(data => console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)))
+                    .do(data => console.log('/isUserLoggedIn api result ==>: ' + JSON.stringify(data)))
                     .catch(this.handleError);;
     }
 
     logout(){
         return this._http.get(this._logoutUrl)
                 .map((res: Response) => <string> res.json())
-                .do(data => console.log('/logout api result: ' + JSON.stringify(data)))
+                .do(data => console.log('/logout api result ==>: ' + JSON.stringify(data)))
                 .catch(this.handleError);
     }
     
     private handleError(error: Response){
-        console.error(error);
+        console.error('handleError ==>: ' + error);
         return Observable.throw(error.json().error || 'Server error');
     }
 }

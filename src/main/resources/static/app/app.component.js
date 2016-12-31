@@ -21,23 +21,21 @@ var AppComponent = (function () {
         this.logoutObservableService = logoutObservableService;
         this.userAuthService = userAuthService;
         this.isShowAdminMenuOption = false;
-        console.log('inside constructor of AppComponent...');
-        //receive notification from child
+        console.log('constructor of AppComponent');
+        //receive notification from login component
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(function (user) {
-            console.log('user object from child to app component is: ' + JSON.stringify(user));
+            console.log('app component received notification from login component ==>: ' + JSON.stringify(user));
             _this.currentLoggedUser = user.username;
             _this.isShowAdminMenuOption = user.isLogin;
         });
     }
     AppComponent.prototype.logout = function () {
         var _this = this;
-        console.log('logout clicked!');
         this.userAuthService.logout().subscribe(function (data) {
-            console.log('data from logout: ' + data);
+            console.log('/logout ==> ' + data);
             if (data) {
-                console.log('hidding the admin menu since user is logged out');
                 _this.isShowAdminMenuOption = false;
-                //call home component to hide the login ui
+                //notify home component to hide the login ui
                 var logout = 'logout';
                 _this.logoutObservableService.announceUserIsLogout(logout);
                 //success login, navigate to /home route
@@ -47,15 +45,15 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("oninit AppComponent...");
+        console.log("oninit AppComponent");
         //call backend server to check if user is login or not when refresh page
         var ux;
         this.userAuthService.userStillAlive().subscribe(function (ux) {
-            console.log('data from userStillAlive: ' + JSON.stringify(ux));
+            console.log('/userStillAlive ==> ' + JSON.stringify(ux));
             if (ux) {
                 var isAlive = ux.userLogin;
                 var currentName = ux.username;
-                console.log('isAlive: ' + isAlive + ' | currentName: ' + currentName);
+                console.log('user still login? ' + isAlive + ' | logged in usrname: ' + currentName);
                 if (isAlive) {
                     _this.isShowAdminMenuOption = true;
                     _this.currentLoggedUser = currentName;

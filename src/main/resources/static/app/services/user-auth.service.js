@@ -28,31 +28,30 @@ var UserAuthService = (function () {
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.post(this._loginUrl, bodyRequest, options)
             .map(function (res) { return res.json(); })
-            .do(function (data) { return console.log('/login api result: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('/login api result ==>: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserAuthService.prototype.userStillAlive = function () {
         return this._http.get(this._isUserStillAliveUrl)
             .map(function (res) { return res.json(); })
-            .do(function (data) { return console.log('/isUserStillAlive api result: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('/isUserStillAlive api result ==>: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserAuthService.prototype.isUserLogin = function () {
-        console.log('INSIDE isUserLogin method');
         return this._http.get(this._isUserLoggedIn)
             .map(function (res) { return res.json(); })
-            .do(function (data) { return console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('/isUserLoggedIn api result ==>: ' + JSON.stringify(data)); })
             .catch(this.handleError);
         ;
     };
     UserAuthService.prototype.logout = function () {
         return this._http.get(this._logoutUrl)
             .map(function (res) { return res.json(); })
-            .do(function (data) { return console.log('/logout api result: ' + JSON.stringify(data)); })
+            .do(function (data) { return console.log('/logout api result ==>: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserAuthService.prototype.handleError = function (error) {
-        console.error(error);
+        console.error('handleError ==>: ' + error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
     return UserAuthService;

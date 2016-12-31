@@ -13,7 +13,7 @@ export class AdminComponent implements OnInit{
     edit: string = 'Edit';
 
     constructor(){
-        console.log('inside of AdminComponent constructor..');
+        console.log('AdminComponent constructor..');
     }
 
     ngOnInit(): void {
@@ -21,7 +21,7 @@ export class AdminComponent implements OnInit{
         this.adminContentTitle = this.defaultContentTitle;
     }
 
-    public click(option:string): void {
+    public adminMenuClick(option:string): void {
         this.adminContentTitle = option;
     }
 }

@@ -16,13 +16,13 @@ var AdminComponent = (function () {
         this.defaultContentTitle = 'Add';
         this.add = 'Add';
         this.edit = 'Edit';
-        console.log('inside of AdminComponent constructor..');
+        console.log('AdminComponent constructor..');
     }
     AdminComponent.prototype.ngOnInit = function () {
         console.log('onInit of AdminCompnent');
         this.adminContentTitle = this.defaultContentTitle;
     };
-    AdminComponent.prototype.click = function (option) {
+    AdminComponent.prototype.adminMenuClick = function (option) {
         this.adminContentTitle = option;
     };
     return AdminComponent;

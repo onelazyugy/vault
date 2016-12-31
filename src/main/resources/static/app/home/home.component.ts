@@ -8,34 +8,31 @@ import { UserAuthService } from '../services/user-auth.service';
 
 @Component({
     templateUrl: 'app/home/home.component.html',
-    providers: [UserAuthService] //a service would go in that array
+    providers: [UserAuthService]
 })
 
 export class HomeComponent implements OnInit, OnDestroy{
     isShowSearchBar:boolean = false;
     subscription: Subscription;
     user: IUser;
-    nofigyLogout: string;
 
     constructor(private loginObservableService: LoginObservableService, private logoutObservableService: LogoutObservableService, private userAuthService: UserAuthService){
-        console.log('inside constructor of HomeComponent..');
+        console.log('constructor of HomeComponent..');
         //user login notification
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(
             user =>{
-                console.log('user object from child to home component is: ' + JSON.stringify(user));
+                console.log('home component received notification from login component ==>: ' + JSON.stringify(user));
                 this.isShowSearchBar = user.isLogin;
         });
 
         //user logout notification
         this.subscription = logoutObservableService.userLogoutAnnounced$.subscribe(
             notifyLogout =>{
-                console.log('message from app component to home compoent is: ' + JSON.stringify(notifyLogout));
+                console.log('home component received notification form app component ==>: ' + JSON.stringify(notifyLogout));
                 if(notifyLogout === 'logout'){
-                    console.log("user is logged out, hidding the search bar")
                     this.isShowSearchBar = false;
                 }
                 if(notifyLogout === 'alive'){
-                    console.log("user is alive, showing the search bar");
                     this.isShowSearchBar = true;
                 }
             });
@@ -47,7 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy{
        let ux: IUser;
         this.userAuthService.userStillAlive().subscribe(
             ux => {
-                console.log('data from userStillAlive: ' + JSON.stringify(ux));
+                console.log('/userStillAlive ==>: ' + JSON.stringify(ux));
                 if(ux){
                     let isAlive: boolean = ux.userLogin;
                     let currentName: string = ux.username;

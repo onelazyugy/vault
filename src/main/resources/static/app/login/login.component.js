@@ -21,15 +21,14 @@ var LoginComponent = (function () {
     }
     LoginComponent.prototype.login = function () {
         var _this = this;
-        console.log('login button clicked....');
         if (this.user) {
             if (this.user.password != '' && this.user.username != '') {
                 //call backend to verify the credentials
                 this.userAuthService.login(this.user).subscribe(function (data) {
-                    console.log('data from login: ' + data);
+                    console.log('/login result ==>: ' + data);
                     if (data) {
                         _this.messageLabel = 'success';
-                        //push to message parents but empty the password first
+                        //notify parents but empty the password first
                         _this.user.isLogin = true;
                         _this.user.password = null;
                         _this.loginObservableService.announceUserIsLogin(_this.user);

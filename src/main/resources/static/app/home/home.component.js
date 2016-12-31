@@ -19,21 +19,19 @@ var HomeComponent = (function () {
         this.logoutObservableService = logoutObservableService;
         this.userAuthService = userAuthService;
         this.isShowSearchBar = false;
-        console.log('inside constructor of HomeComponent..');
+        console.log('constructor of HomeComponent..');
         //user login notification
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(function (user) {
-            console.log('user object from child to home component is: ' + JSON.stringify(user));
+            console.log('home component received notification from login component ==>: ' + JSON.stringify(user));
             _this.isShowSearchBar = user.isLogin;
         });
         //user logout notification
         this.subscription = logoutObservableService.userLogoutAnnounced$.subscribe(function (notifyLogout) {
-            console.log('message from app component to home compoent is: ' + JSON.stringify(notifyLogout));
+            console.log('home component received notification form app component ==>: ' + JSON.stringify(notifyLogout));
             if (notifyLogout === 'logout') {
-                console.log("user is logged out, hidding the search bar");
                 _this.isShowSearchBar = false;
             }
             if (notifyLogout === 'alive') {
-                console.log("user is alive, showing the search bar");
                 _this.isShowSearchBar = true;
             }
         });
@@ -44,7 +42,7 @@ var HomeComponent = (function () {
         //call backend server to check if user is login or not when refresh page
         var ux;
         this.userAuthService.userStillAlive().subscribe(function (ux) {
-            console.log('data from userStillAlive: ' + JSON.stringify(ux));
+            console.log('/userStillAlive ==>: ' + JSON.stringify(ux));
             if (ux) {
                 var isAlive = ux.userLogin;
                 var currentName = ux.username;
@@ -67,7 +65,7 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         templateUrl: 'app/home/home.component.html',
-        providers: [user_auth_service_1.UserAuthService] //a service would go in that array
+        providers: [user_auth_service_1.UserAuthService]
     }),
     __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService])
 ], HomeComponent);

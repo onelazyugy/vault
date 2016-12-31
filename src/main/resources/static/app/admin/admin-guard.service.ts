@@ -12,12 +12,11 @@ export class AdminRouteGuard implements CanActivate{
     isEnableAdminRoute: boolean = false;
 
     constructor(private _router: Router, private userAuthService: UserAuthService){
-        console.log('inside AdminRouteGuard contructor...');
+        console.log('AdminRouteGuard contructor...');
     }
 
     canActivate(route: ActivatedRouteSnapshot) {
-        //http://stackoverflow.com/questions/37948068/angular-2-routing-canactivate-work-with-observable
-        console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
+        console.log('canActivate method from AdminRouteGuard: ' + route.url[0].path);
         return this.userAuthService.isUserLogin().map(
         res => {
             console.log('isUserLogin api returns: ' + res);
