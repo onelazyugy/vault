@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
+    styleUrls: ['app/app.component.css'],
     providers: [LoginObservableService, LogoutObservableService, UserAuthService]//a service would go in that array
 })
 

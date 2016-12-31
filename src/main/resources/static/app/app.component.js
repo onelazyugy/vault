@@ -74,6 +74,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'vault',
         templateUrl: 'app/app.component.html',
+        styleUrls: ['app/app.component.css'],
         providers: [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService] //a service would go in that array
     }),
     __metadata("design:paramtypes", [router_1.Router, login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService])
