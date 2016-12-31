@@ -38,7 +38,7 @@ var UserAuthService = (function () {
             .catch(this.handleError);
     };
     UserAuthService.prototype.isUserLogin = function () {
-        console.log('INSIDE userStillAlive2 method');
+        console.log('INSIDE isUserLogin method');
         return this._http.get(this._isUserLoggedIn)
             .map(function (res) { return res.json(); })
             .do(function (data) { return console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)); })

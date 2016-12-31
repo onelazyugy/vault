@@ -35,7 +35,7 @@ export class UserAuthService {
     }
     
     isUserLogin(): Observable<boolean> {
-        console.log('INSIDE userStillAlive2 method');
+        console.log('INSIDE isUserLogin method');
         return this._http.get(this._isUserLoggedIn)
                     .map((res: Response) => <boolean> res.json())
                     .do(data => console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)))

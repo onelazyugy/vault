@@ -6,6 +6,8 @@ import { Subscription }   from 'rxjs/Subscription';
 import { IUser } from '../app/login/user';
 import { UserAuthService } from '../app/services/user-auth.service';
 
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'vault',
     templateUrl: 'app/app.component.html',
@@ -18,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy{
     user: IUser;
     currentLoggedUser: string;
 
-    constructor(private loginObservableService: LoginObservableService, private logoutObservableService: LogoutObservableService, private userAuthService: UserAuthService){
+    constructor(private _router: Router, private loginObservableService: LoginObservableService, private logoutObservableService: LogoutObservableService, private userAuthService: UserAuthService){
         console.log('inside constructor of AppComponent...');
         //receive notification from child
         this.subscription = loginObservableService.userLoginAnnounced$.subscribe(
@@ -40,6 +42,8 @@ export class AppComponent implements OnInit, OnDestroy{
                    //call home component to hide the login ui
                    let logout: string = 'logout';
                    this.logoutObservableService.announceUserIsLogout(logout);
+                   //success login, navigate to /home route
+                   this._router.navigate(['/home']);
                }
            } 
         );

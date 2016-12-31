@@ -12,9 +12,11 @@ var core_1 = require("@angular/core");
 var login_observable_service_1 = require("./login/login-observable.service");
 var logout_observable_service_1 = require("../app/login/logout-observable.service");
 var user_auth_service_1 = require("../app/services/user-auth.service");
+var router_1 = require("@angular/router");
 var AppComponent = (function () {
-    function AppComponent(loginObservableService, logoutObservableService, userAuthService) {
+    function AppComponent(_router, loginObservableService, logoutObservableService, userAuthService) {
         var _this = this;
+        this._router = _router;
         this.loginObservableService = loginObservableService;
         this.logoutObservableService = logoutObservableService;
         this.userAuthService = userAuthService;
@@ -38,6 +40,8 @@ var AppComponent = (function () {
                 //call home component to hide the login ui
                 var logout = 'logout';
                 _this.logoutObservableService.announceUserIsLogout(logout);
+                //success login, navigate to /home route
+                _this._router.navigate(['/home']);
             }
         });
     };
@@ -74,7 +78,7 @@ AppComponent = __decorate([
         templateUrl: 'app/app.component.html',
         providers: [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService])
+    __metadata("design:paramtypes", [router_1.Router, login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService, user_auth_service_1.UserAuthService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

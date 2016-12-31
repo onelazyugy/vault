@@ -20,7 +20,7 @@ export class AdminRouteGuard implements CanActivate{
         console.log('canActive method from AdminRouteGuard: ' + route.url[0].path);
         return this.userAuthService.isUserLogin().map(
         res => {
-            console.log('response from isUserLogin api returns: ' + res);
+            console.log('isUserLogin api returns: ' + res);
             if(res){
                 return true;
             } 
