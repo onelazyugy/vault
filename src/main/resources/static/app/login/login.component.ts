@@ -16,7 +16,7 @@ export class LoginComponent {
     user: IUser = {'username': '','password': '', isLogin: false};
     messageLabel: string = '';
 
-    constructor(private loginService: LoginObservableService, private userAuthService: UserAuthService){}
+    constructor(private loginObservableService: LoginObservableService, private userAuthService: UserAuthService){}
 
     login(){
         console.log('login button clicked....');
@@ -31,7 +31,7 @@ export class LoginComponent {
                                 //push to message parents but empty the password first
                                 this.user.isLogin = true;
                                 this.user.password = null;
-                                this.loginService.announceUserIsLogin(this.user);
+                                this.loginObservableService.announceUserIsLogin(this.user);
                             }                            
                         },
                         error => {

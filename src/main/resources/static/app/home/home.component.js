@@ -10,15 +10,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var login_observable_service_1 = require("../login/login-observable.service");
+var logout_observable_service_1 = require("../login/logout-observable.service");
 var HomeComponent = (function () {
-    function HomeComponent(loginService) {
+    function HomeComponent(loginObservableService, logoutObservableService) {
         var _this = this;
-        this.loginService = loginService;
+        this.loginObservableService = loginObservableService;
+        this.logoutObservableService = logoutObservableService;
         this.isShowSearchBar = false;
         console.log('inside constructor of HomeComponent..');
-        this.subscription = loginService.userLoginAnnounced$.subscribe(function (user) {
+        //user login notification
+        this.subscription = loginObservableService.userLoginAnnounced$.subscribe(function (user) {
             console.log('user object from child to home component is: ' + JSON.stringify(user));
             _this.isShowSearchBar = user.isLogin;
+        });
+        //user logout notification
+        this.subscription = logoutObservableService.userLogoutAnnounced$.subscribe(function (notifyLogout) {
+            console.log('message from app component to home compoent is: ' + JSON.stringify(notifyLogout));
+            if (notifyLogout === 'logout') {
+                _this.isShowSearchBar = false;
+            }
         });
     }
     HomeComponent.prototype.ngOnInit = function () {
@@ -37,7 +47,7 @@ HomeComponent = __decorate([
         templateUrl: 'app/home/home.component.html',
         providers: [] //a service would go in that array
     }),
-    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService])
+    __metadata("design:paramtypes", [login_observable_service_1.LoginObservableService, logout_observable_service_1.LogoutObservableService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

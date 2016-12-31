@@ -12,8 +12,8 @@ var core_1 = require("@angular/core");
 var login_observable_service_1 = require("./login-observable.service");
 var user_auth_service_1 = require("../services/user-auth.service");
 var LoginComponent = (function () {
-    function LoginComponent(loginService, userAuthService) {
-        this.loginService = loginService;
+    function LoginComponent(loginObservableService, userAuthService) {
+        this.loginObservableService = loginObservableService;
         this.userAuthService = userAuthService;
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '', isLogin: false };
@@ -32,7 +32,7 @@ var LoginComponent = (function () {
                         //push to message parents but empty the password first
                         _this.user.isLogin = true;
                         _this.user.password = null;
-                        _this.loginService.announceUserIsLogin(_this.user);
+                        _this.loginObservableService.announceUserIsLogin(_this.user);
                     }
                 }, function (error) {
                     console.log('Error login: ' + error);

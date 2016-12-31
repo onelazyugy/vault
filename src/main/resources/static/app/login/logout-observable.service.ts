@@ -1,0 +1,19 @@
+import { Injectable } from '@angular/core';
+import { Subject }    from 'rxjs/Subject';
+
+import { IUser } from './user';
+
+@Injectable()
+export class LogoutObservableService {
+    //Observable string sources
+    private isUserLogout = new Subject<string>();
+
+    //Observable string streams
+    userLogoutAnnounced$ = this.isUserLogout.asObservable();
+
+    //Service message commands
+    announceUserIsLogout(logout: string){
+        console.log('announceUserIsLogout() method');
+        this.isUserLogout.next(logout);
+    }
+}
