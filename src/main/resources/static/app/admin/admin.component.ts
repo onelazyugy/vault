@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    templateUrl: 'app/admin/admin.component.html'
+    templateUrl: 'app/admin/admin.component.html',
+    providers: []
 })
 
 export class AdminComponent implements OnInit{
@@ -11,7 +12,12 @@ export class AdminComponent implements OnInit{
     add: string = 'Add';
     edit: string = 'Edit';
 
+    constructor(){
+        console.log('inside of AdminComponent constructor..');
+    }
+
     ngOnInit(): void {
+        console.log('onInit of AdminCompnent');
         this.adminContentTitle = this.defaultContentTitle;
     }
 

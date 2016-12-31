@@ -30,8 +30,11 @@ import { AdminComponent } from './admin/admin.component';
     HomeComponent, 
     AdminComponent,
   ],
+  providers:[
+
+  ],
   bootstrap: [ 
-    AppComponent 
+    AppComponent
   ]
 })
 export class AppModule { }

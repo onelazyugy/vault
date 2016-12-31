@@ -44,6 +44,16 @@ public class VaultController {
 		return user;
 	}
 
+    @RequestMapping(value = "/isUserLoggedIn", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Boolean isUserLoggedIn(HttpServletRequest req){
+        HttpSession session = req.getSession(false);
+        boolean isLoggedIn = false;
+        if(session != null){
+            isLoggedIn = (boolean)session.getAttribute("hasSession");
+        }
+        return isLoggedIn;
+    }
+
 	@RequestMapping(value = "/getUserStatus", method = RequestMethod.POST)
 	public boolean getUserStatus(@RequestBody User user){
 		DAOIfc<User> dao = new UserDao();

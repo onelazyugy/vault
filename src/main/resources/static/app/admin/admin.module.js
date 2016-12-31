@@ -14,6 +14,7 @@ var admin_add_content_component_1 = require("./admin-add-content.component");
 var admin_edit_content_component_1 = require("./admin-edit-content.component");
 var admin_component_1 = require("./admin.component");
 var admin_guard_service_1 = require("./admin-guard.service");
+var user_auth_service_1 = require("../services/user-auth.service");
 var AdminModule = (function () {
     function AdminModule() {
     }
@@ -35,7 +36,8 @@ AdminModule = __decorate([
             admin_edit_content_component_1.AdminEditContent
         ],
         providers: [
-            admin_guard_service_1.AdminRouteGuard
+            admin_guard_service_1.AdminRouteGuard,
+            user_auth_service_1.UserAuthService //here because the AdminRouteGuard need to inject it
         ]
     }),
     __metadata("design:paramtypes", [])

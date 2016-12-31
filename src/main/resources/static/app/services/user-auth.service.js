@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-//https://scotch.io/tutorials/angular-2-http-requests-with-observables
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var Observable_1 = require("rxjs/Observable");
@@ -16,11 +15,14 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 require("rxjs/add/operator/do");
 var UserAuthService = (function () {
+    //
     function UserAuthService(_http) {
         this._http = _http;
         this._loginUrl = 'http://localhost:8085/rs/login';
         this._isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
         this._logoutUrl = 'http://localhost:8085/rs/logout';
+        //test
+        this._isUserLoggedIn = 'http://localhost:8085/rs/isUserLoggedIn';
     }
     UserAuthService.prototype.login = function (user) {
         var bodyRequest = JSON.stringify(user);
@@ -37,6 +39,16 @@ var UserAuthService = (function () {
             .do(function (data) { return console.log('/isUserStillAlive api result: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
+    //
+    UserAuthService.prototype.userStillAlive2 = function () {
+        console.log('INSIDE userStillAlive2 method');
+        return this._http.get(this._isUserLoggedIn)
+            .map(function (res) { return res.json(); })
+            .do(function (data) { return console.log('/isUserLoggedIn api result: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+        ;
+    };
+    //
     UserAuthService.prototype.logout = function () {
         return this._http.get(this._logoutUrl)
             .map(function (res) { return res.json(); })

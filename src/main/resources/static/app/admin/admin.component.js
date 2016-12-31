@@ -16,8 +16,10 @@ var AdminComponent = (function () {
         this.defaultContentTitle = 'Add';
         this.add = 'Add';
         this.edit = 'Edit';
+        console.log('inside of AdminComponent constructor..');
     }
     AdminComponent.prototype.ngOnInit = function () {
+        console.log('onInit of AdminCompnent');
         this.adminContentTitle = this.defaultContentTitle;
     };
     AdminComponent.prototype.click = function (option) {
@@ -27,7 +29,8 @@ var AdminComponent = (function () {
 }());
 AdminComponent = __decorate([
     core_1.Component({
-        templateUrl: 'app/admin/admin.component.html'
+        templateUrl: 'app/admin/admin.component.html',
+        providers: []
     }),
     __metadata("design:paramtypes", [])
 ], AdminComponent);
