@@ -9,3 +9,7 @@ div.panel-heading {
 div.bg-img {
     background-image: url("app/assets/images/bg.jpg");
 }
+
+a.cursor {
+    cursor:default;
+}
