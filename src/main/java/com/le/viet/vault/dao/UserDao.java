@@ -1,19 +1,25 @@
 package com.le.viet.vault.dao;
 
 import com.le.viet.vault.model.User;
+import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by onelazyguy on 12/29/16.
  */
-public class UserDao implements DAOIfc<User>{
-    //hard code for now
-    private String username = "viet";
-    private String password = "password";
+public class UserDao implements DAOIfc<User> {
+    private MongoTemplate mongoTemplate;
+
+    public UserDao(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
 
     @Override
     public boolean add(User user) {
+        user.setCreatedDate(new Date());
+        this.mongoTemplate.insert(user);
         return false;
     }
 
@@ -39,10 +45,6 @@ public class UserDao implements DAOIfc<User>{
 
     @Override
     public boolean verify(User user) {
-        boolean isMatchUser = user.getUsername().equalsIgnoreCase(this.username);
-
-        return isMatchUser;
+        return false;
     }
-
-
 }

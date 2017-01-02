@@ -6,6 +6,8 @@ import com.le.viet.vault.model.User;
 import com.le.viet.vault.user.UserAuth;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/rs")
 public class VaultController {
 	private final Logger LOG = LoggerFactory.getLogger(VaultController.class);
+	@Autowired
+	private MongoTemplate mongoTemplate;
 
 	@RequestMapping(value = "/ping", method = RequestMethod.GET)
 	public String ping(){
@@ -67,8 +71,15 @@ public class VaultController {
 
 	@RequestMapping(value = "/getUserStatus", method = RequestMethod.POST)
 	public boolean getUserStatus(@RequestBody User user){
-		DAOIfc<User> dao = new UserDao();
+		DAOIfc<User> dao = new UserDao(mongoTemplate);
 		boolean isUserValid = dao.verify(user);
+		return isUserValid;
+	}
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public boolean addUser(@RequestBody User user){
+		DAOIfc<User> dao = new UserDao(mongoTemplate);
+		boolean isUserValid = dao.add(user);
 		return isUserValid;
 	}
 }
