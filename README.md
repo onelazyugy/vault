@@ -1,4 +1,4 @@
-# app
+# vault application
 Spring boot, gradle, mongoDB, bootstrap and angular2 application<br/>
 A personal application that I use locally.
 
