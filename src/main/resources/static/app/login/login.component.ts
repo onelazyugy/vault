@@ -25,18 +25,20 @@ export class LoginComponent {
                         data => {
                             console.log('/login result ==>: ' + data);
                             if(data){
-                                this.messageLabel = 'success';
                                 //notify parents but empty the password first
                                 this.user.isLogin = true;
                                 this.user.password = null;
                                 this.loginObservableService.announceUserIsLogin(this.user);
-                            }                            
+                            }                       
                         },
                         error => {
                             console.log('Error login: ' + error);
                             this.user.isLogin = false;
                             this.messageLabel = 'failed login';
                             return false;
+                        },
+                        () => {
+                            console.log('Completed login request');
                         }
                     );                
             } else {

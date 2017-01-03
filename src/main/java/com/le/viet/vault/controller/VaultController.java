@@ -29,7 +29,7 @@ public class VaultController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST,  produces= MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean login(@RequestBody User user, HttpServletRequest req){
 		LOG.debug("STARTED: /login");
-		boolean loginSuccess = new UserAuth().login(user, req);
+		boolean loginSuccess = new UserAuth(mongoTemplate).login(user, req);
 		LOG.debug("END: /login ==> " + loginSuccess);
 		return loginSuccess;
 	}
@@ -37,7 +37,7 @@ public class VaultController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public Boolean logout(HttpServletRequest req){
 		LOG.debug("STARTED: /logout");
-		boolean result = new UserAuth().logout(req);
+		boolean result = new UserAuth(mongoTemplate).logout(req);
 		LOG.debug("END: /logout ==> " + result);
 		return result;
 	}
