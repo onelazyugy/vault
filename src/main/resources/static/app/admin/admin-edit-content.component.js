@@ -8,18 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var AdminEditContent = (function () {
     function AdminEditContent() {
     }
+    AdminEditContent = __decorate([
+        core_1.Component({
+            selector: 'admin-edit',
+            templateUrl: 'app/admin/admin-edit-content.component.html'
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AdminEditContent);
     return AdminEditContent;
 }());
-AdminEditContent = __decorate([
-    core_1.Component({
-        selector: 'admin-edit',
-        templateUrl: 'app/admin/admin-edit-content.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], AdminEditContent);
 exports.AdminEditContent = AdminEditContent;
 //# sourceMappingURL=admin-edit-content.component.js.map

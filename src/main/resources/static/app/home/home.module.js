@@ -8,35 +8,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var router_1 = require("@angular/router");
-var forms_1 = require("@angular/forms"); //for ngModel
-var search_component_1 = require("../search/search.component");
-var home_component_1 = require("./home.component");
-var login_component_1 = require("../login/login.component");
+var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
+var forms_1 = require('@angular/forms'); //for ngModel
+var search_component_1 = require('../search/search.component');
+var home_component_1 = require('./home.component');
+var login_component_1 = require('../login/login.component');
 var HomeModule = (function () {
     function HomeModule() {
     }
+    HomeModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                search_component_1.SearchComponent,
+                login_component_1.LoginComponent
+            ],
+            imports: [
+                forms_1.FormsModule,
+                router_1.RouterModule.forChild([
+                    { path: 'home', component: home_component_1.HomeComponent }
+                ])
+            ],
+            exports: [
+                search_component_1.SearchComponent,
+                login_component_1.LoginComponent
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], HomeModule);
     return HomeModule;
 }());
-HomeModule = __decorate([
-    core_1.NgModule({
-        declarations: [
-            search_component_1.SearchComponent,
-            login_component_1.LoginComponent
-        ],
-        imports: [
-            forms_1.FormsModule,
-            router_1.RouterModule.forChild([
-                { path: 'home', component: home_component_1.HomeComponent }
-            ])
-        ],
-        exports: [
-            search_component_1.SearchComponent,
-            login_component_1.LoginComponent
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], HomeModule);
 exports.HomeModule = HomeModule;
 //# sourceMappingURL=home.module.js.map

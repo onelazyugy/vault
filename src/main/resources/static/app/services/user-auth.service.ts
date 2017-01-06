@@ -51,4 +51,12 @@ export class UserAuthService {
         console.error('handleError ==>: ' + error);
         return Observable.throw(error.json().error || 'Server error');
     }
+
+    //TODO remove me
+    test(): Observable<IUser> {
+        return this._http.get('http://localhost:8085/rs/test')
+                    .map((res: Response) => <IUser> res.json())
+                    .do(data => console.log('/test api result ==>: ' + JSON.stringify(data)))
+                    .catch(this.handleError);;
+    }
 }

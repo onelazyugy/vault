@@ -8,21 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var search_component_1 = require("./search.component");
+var core_1 = require('@angular/core');
+var search_component_1 = require('./search.component');
 var SearchModule = (function () {
     function SearchModule() {
     }
+    SearchModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                search_component_1.SearchComponent
+            ],
+            providers: []
+        }), 
+        __metadata('design:paramtypes', [])
+    ], SearchModule);
     return SearchModule;
 }());
-SearchModule = __decorate([
-    core_1.NgModule({
-        declarations: [
-            search_component_1.SearchComponent
-        ],
-        providers: []
-    }),
-    __metadata("design:paramtypes", [])
-], SearchModule);
 exports.SearchModule = SearchModule;
 //# sourceMappingURL=search.module.js.map

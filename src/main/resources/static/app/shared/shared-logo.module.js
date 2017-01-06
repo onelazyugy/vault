@@ -8,24 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var shared_logo_component_1 = require("./shared-logo.component");
+var core_1 = require('@angular/core');
+var shared_logo_component_1 = require('./shared-logo.component');
 var LogoModule = (function () {
     function LogoModule() {
     }
+    LogoModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                shared_logo_component_1.LogoComponent
+            ],
+            imports: [],
+            exports: [
+                shared_logo_component_1.LogoComponent
+            ]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], LogoModule);
     return LogoModule;
 }());
-LogoModule = __decorate([
-    core_1.NgModule({
-        declarations: [
-            shared_logo_component_1.LogoComponent
-        ],
-        imports: [],
-        exports: [
-            shared_logo_component_1.LogoComponent
-        ]
-    }),
-    __metadata("design:paramtypes", [])
-], LogoModule);
 exports.LogoModule = LogoModule;
 //# sourceMappingURL=shared-logo.module.js.map

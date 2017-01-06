@@ -29,7 +29,10 @@ export class LoginComponent {
                                 this.user.isLogin = true;
                                 this.user.password = null;
                                 this.loginObservableService.announceUserIsLogin(this.user);
-                            }                       
+                            } else {
+                                this.user.isLogin = false;
+                                this.messageLabel = 'incorrect credentials';
+                            }                      
                         },
                         error => {
                             console.log('Error login: ' + error);

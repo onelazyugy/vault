@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/rs")
@@ -81,5 +82,17 @@ public class VaultController {
 		DAOIfc<User> dao = new UserDao(mongoTemplate);
 		boolean isUserValid = dao.add(user);
 		return isUserValid;
+	}
+
+	//TODO remove me
+	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public User test(){
+		LOG.debug("STARTED: /test");
+		User u = new User();
+		u.setCreatedDate(new Date());
+		u.setUsername("onelazyguy");
+		u.setUserLogin(false);
+		u.setId("1");
+		return u;
 	}
 }
