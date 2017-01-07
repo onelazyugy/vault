@@ -13,6 +13,7 @@ import java.util.Date;
 public class AdminEntry {
     @Id
     private String id;
+    private String category;
     private String tag;
     private String password;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -50,10 +51,19 @@ public class AdminEntry {
         this.createdDate = createdDate;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "AdminEntry{" +
                 "id='" + id + '\'' +
+                ", category='" + category + '\'' +
                 ", tag='" + tag + '\'' +
                 ", password='" + password + '\'' +
                 ", createdDate=" + createdDate +
