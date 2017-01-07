@@ -83,16 +83,4 @@ public class VaultController {
 		boolean isUserValid = dao.add(user);
 		return isUserValid;
 	}
-
-	//TODO remove me
-	@RequestMapping(value = "/test", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User test(){
-		LOG.debug("STARTED: /test");
-		User u = new User();
-		u.setCreatedDate(new Date());
-		u.setUsername("onelazyguy");
-		u.setUserLogin(false);
-		u.setId("1");
-		return u;
-	}
 }

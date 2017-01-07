@@ -1,6 +1,8 @@
 package com.le.viet.vault.dao;
 
+import com.le.viet.vault.exception.ProjectException;
 import com.le.viet.vault.model.User;
+import com.le.viet.vault.util.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -22,10 +24,21 @@ public class UserDao implements DAOIfc<User> {
     }
 
     @Override
-    public boolean add(User user) {
+    public boolean add(User user){
         user.setCreatedDate(new Date());
-        this.mongoTemplate.insert(user);
-        return true;
+        Utils utils = new Utils();
+        boolean addUserSuccess = false;
+        try{
+            String hashedPassword = utils.hash(user.getPassword());
+            user.setPassword(hashedPassword);
+            this.mongoTemplate.insert(user);
+            addUserSuccess = true;
+        } catch (ProjectException pe){
+            LOG.error("ProjectException in add():\n" + pe.getMessage());
+            pe.printStackTrace();
+        } finally {
+            return addUserSuccess;
+        }
     }
 
     @Override
@@ -54,9 +67,17 @@ public class UserDao implements DAOIfc<User> {
         Query query = new Query(Criteria.where("username").is(user.getUsername()));
         User foundUser = this.mongoTemplate.findOne(query, User.class);
         if(foundUser != null ){
-            if(foundUser.getUsername().equalsIgnoreCase(user.getUsername())){
-            LOG.debug("foundUser ==>: " + foundUser.toString());
-                isUserFound = true;
+            try {
+                Utils utils = new Utils();
+                String inputHashedPass = utils.hash(user.getPassword());
+                String storedHashedPass = foundUser.getPassword();
+                String storedUserName = foundUser.getUsername();
+                if(storedUserName.equals(user.getUsername()) && inputHashedPass.equals(storedHashedPass)){
+                    LOG.debug("foundUser ==>: " + foundUser.toString());
+                    isUserFound = true;
+                }
+            } catch (ProjectException pe){
+;               return isUserFound;
             }
         }
         return isUserFound;

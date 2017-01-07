@@ -1242,7 +1242,7 @@ declare module "url" {
         search?: string;
         query?: string | any;
         slashes?: boolean;
-        hash?: string;
+        utils?: string;
         path?: string;
     }
 
