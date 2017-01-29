@@ -8,39 +8,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var admin_add_content_component_1 = require('./admin-add-content.component');
-var admin_edit_content_component_1 = require('./admin-edit-content.component');
-var admin_component_1 = require('./admin.component');
-var admin_guard_service_1 = require('./admin-guard.service');
-var user_auth_service_1 = require('../services/user-auth.service');
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var admin_add_content_component_1 = require("./admin-add-content.component");
+var admin_edit_content_component_1 = require("./admin-edit-content.component");
+var admin_component_1 = require("./admin.component");
+var admin_guard_service_1 = require("./admin-guard.service");
+var user_auth_service_1 = require("../services/user-auth.service");
 var AdminModule = (function () {
     function AdminModule() {
     }
-    AdminModule = __decorate([
-        core_1.NgModule({
-            declarations: [
-                admin_add_content_component_1.AdminAddContent,
-                admin_edit_content_component_1.AdminEditContent
-            ],
-            imports: [
-                router_1.RouterModule.forChild([
-                    { path: 'admin', canActivate: [admin_guard_service_1.AdminRouteGuard], component: admin_component_1.AdminComponent }
-                ])
-            ],
-            exports: [
-                admin_add_content_component_1.AdminAddContent,
-                admin_edit_content_component_1.AdminEditContent
-            ],
-            providers: [
-                admin_guard_service_1.AdminRouteGuard,
-                user_auth_service_1.UserAuthService //here because the AdminRouteGuard need to inject it
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AdminModule);
     return AdminModule;
 }());
+AdminModule = __decorate([
+    core_1.NgModule({
+        declarations: [
+            admin_add_content_component_1.AdminAddContent,
+            admin_edit_content_component_1.AdminEditContent
+        ],
+        imports: [
+            router_1.RouterModule.forChild([
+                { path: 'admin', canActivate: [admin_guard_service_1.AdminRouteGuard], component: admin_component_1.AdminComponent }
+            ])
+        ],
+        exports: [
+            admin_add_content_component_1.AdminAddContent,
+            admin_edit_content_component_1.AdminEditContent
+        ],
+        providers: [
+            admin_guard_service_1.AdminRouteGuard,
+            user_auth_service_1.UserAuthService //here because the AdminRouteGuard need to inject it
+        ]
+    }),
+    __metadata("design:paramtypes", [])
+], AdminModule);
 exports.AdminModule = AdminModule;
 //# sourceMappingURL=admin.module.js.map

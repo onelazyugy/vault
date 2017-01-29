@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Subject_1 = require('rxjs/Subject');
+var core_1 = require("@angular/core");
+var Subject_1 = require("rxjs/Subject");
 var LoginObservableService = (function () {
     function LoginObservableService() {
         //Observable string sources
@@ -22,11 +22,11 @@ var LoginObservableService = (function () {
         console.log('announceUserIsLogin() method and message is: ' + JSON.stringify(user));
         this.isUserLogin.next(user);
     };
-    LoginObservableService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], LoginObservableService);
     return LoginObservableService;
 }());
+LoginObservableService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], LoginObservableService);
 exports.LoginObservableService = LoginObservableService;
 //# sourceMappingURL=login-observable.service.js.map

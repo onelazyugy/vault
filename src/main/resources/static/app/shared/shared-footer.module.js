@@ -8,24 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var shared_footer_component_1 = require('./shared-footer.component');
+var core_1 = require("@angular/core");
+var shared_footer_component_1 = require("./shared-footer.component");
 var FooterModule = (function () {
     function FooterModule() {
     }
-    FooterModule = __decorate([
-        core_1.NgModule({
-            declarations: [
-                shared_footer_component_1.FooterComponent
-            ],
-            imports: [],
-            exports: [
-                shared_footer_component_1.FooterComponent
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], FooterModule);
     return FooterModule;
 }());
+FooterModule = __decorate([
+    core_1.NgModule({
+        declarations: [
+            shared_footer_component_1.FooterComponent
+        ],
+        imports: [],
+        exports: [
+            shared_footer_component_1.FooterComponent
+        ]
+    }),
+    __metadata("design:paramtypes", [])
+], FooterModule);
 exports.FooterModule = FooterModule;
 //# sourceMappingURL=shared-footer.module.js.map

@@ -8,18 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var SearchComponent = (function () {
     function SearchComponent() {
     }
-    SearchComponent = __decorate([
-        core_1.Component({
-            selector: 'search',
-            templateUrl: 'app/search/search.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], SearchComponent);
     return SearchComponent;
 }());
+SearchComponent = __decorate([
+    core_1.Component({
+        selector: 'search',
+        templateUrl: 'app/search/search.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], SearchComponent);
 exports.SearchComponent = SearchComponent;
 //# sourceMappingURL=search.component.js.map

@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var LogoComponent = (function () {
     function LogoComponent() {
         this.headerTitle = 'Viet\'s Vault Application';
     }
-    LogoComponent = __decorate([
-        core_1.Component({
-            selector: 'logo',
-            templateUrl: 'app/shared/shared-logo.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], LogoComponent);
     return LogoComponent;
 }());
+LogoComponent = __decorate([
+    core_1.Component({
+        selector: 'logo',
+        templateUrl: 'app/shared/shared-logo.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], LogoComponent);
 exports.LogoComponent = LogoComponent;
 //# sourceMappingURL=shared-logo.component.js.map
