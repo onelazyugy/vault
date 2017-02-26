@@ -15,6 +15,8 @@ require('rxjs/add/operator/map');
 require('rxjs/add/operator/catch');
 require('rxjs/add/operator/do');
 var UserAuthService = (function () {
+    //pcf
+    //end pcf
     function UserAuthService(_http) {
         this._http = _http;
         this._loginUrl = 'http://localhost:8085/rs/login';

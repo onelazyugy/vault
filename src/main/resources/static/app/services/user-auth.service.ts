@@ -9,10 +9,15 @@ import { IUser } from '../login/user';
 
 @Injectable()
 export class UserAuthService {
+    
     private _loginUrl = 'http://localhost:8085/rs/login';
     private _isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
     private _logoutUrl = 'http://localhost:8085/rs/logout';
     private _isUserLoggedIn = 'http://localhost:8085/rs/isUserLoggedIn';
+    
+    //pcf
+    
+    //end pcf
 
     constructor(private _http: Http){}
 
