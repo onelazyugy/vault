@@ -17,12 +17,14 @@ require('rxjs/add/operator/do');
 var UserAuthService = (function () {
     function UserAuthService(_http) {
         this._http = _http;
-        this._loginUrl = 'http://localhost:8085/rs/login';
-        this._isUserStillAliveUrl = 'http://localhost:8085/rs/userStillAlive';
-        this._logoutUrl = 'http://localhost:8085/rs/logout';
-        this._isUserLoggedIn = 'http://localhost:8085/rs/isUserLoggedIn';
+        this._loginUrl = "";
+        this._isUserStillAliveUrl = "";
+        this._isUserLoggedIn = "";
+        this._logoutUrl = "";
     }
     UserAuthService.prototype.login = function (user) {
+        this._loginUrl = this.buildRequestURL() + "/rs/login";
+        console.log("LOGIN URL: " + this._loginUrl);
         var bodyRequest = JSON.stringify(user);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
@@ -32,12 +34,16 @@ var UserAuthService = (function () {
             .catch(this.handleError);
     };
     UserAuthService.prototype.userStillAlive = function () {
+        this._isUserStillAliveUrl = this.buildRequestURL() + "/rs/userStillAlive";
+        console.log("ISUSERSTILLALIVE URL: " + this._isUserStillAliveUrl);
         return this._http.get(this._isUserStillAliveUrl)
             .map(function (res) { return res.json(); })
             .do(function (data) { return console.log('/isUserStillAlive api result ==>: ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserAuthService.prototype.isUserLogin = function () {
+        this._isUserLoggedIn = this.buildRequestURL() + "/rs/isUserLoggedIn";
+        console.log("ISUSERLOGGEDIN URL: " + this._isUserLoggedIn);
         return this._http.get(this._isUserLoggedIn)
             .map(function (res) { return res.json(); })
             .do(function (data) { return console.log('/isUserLoggedIn api result ==>: ' + JSON.stringify(data)); })
@@ -45,6 +51,8 @@ var UserAuthService = (function () {
         ;
     };
     UserAuthService.prototype.logout = function () {
+        this._logoutUrl = this.buildRequestURL() + "/rs/logout";
+        console.log("LOGOUT URL: " + this._logoutUrl);
         return this._http.get(this._logoutUrl)
             .map(function (res) { return res.json(); })
             .do(function (data) { return console.log('/logout api result ==>: ' + JSON.stringify(data)); })
@@ -53,6 +61,20 @@ var UserAuthService = (function () {
     UserAuthService.prototype.handleError = function (error) {
         console.error('handleError ==>: ' + error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    UserAuthService.prototype.buildRequestURL = function () {
+        var hostname = location.hostname;
+        var port = location.port;
+        var protocol = location.protocol;
+        console.log("protocol: " + protocol + " hostname: " + hostname + " port: " + port);
+        if (port != "") {
+            console.log("PORT IS NOT EMPTY");
+            return location.protocol + "//" + location.hostname + ":" + location.port;
+        }
+        else {
+            console.log("PORT IS EMPTY");
+            return location.protocol + "//" + location.hostname;
+        }
     };
     //TODO remove me
     UserAuthService.prototype.test = function () {
