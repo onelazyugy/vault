@@ -1,9 +1,13 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
     }
 }
 
@@ -11,11 +15,18 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+//apply plugin: 'war' //uncomment to build war file, when this is commented out, run gradle clean build will give you vault-0.1.0.jar file
 
 jar {
     baseName = 'vault'
     version =  '0.1.0'
+}
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    jcenter()
 }
 
 repositories {
@@ -32,3 +43,4 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
+
