@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var forms_1 = require('@angular/forms'); //for ngModel
+var common_1 = require('@angular/common'); //for ngIf and pipe and more...
 var search_component_1 = require('../search/search.component');
 var home_component_1 = require('./home.component');
 var login_component_1 = require('../login/login.component');
@@ -25,6 +26,7 @@ var HomeModule = (function () {
             ],
             imports: [
                 forms_1.FormsModule,
+                common_1.CommonModule,
                 router_1.RouterModule.forChild([
                     { path: 'home', component: home_component_1.HomeComponent }
                 ])

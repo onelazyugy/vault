@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var usermodel_1 = require('./usermodel');
 var login_observable_service_1 = require('./login-observable.service');
 var user_auth_service_1 = require('../services/user-auth.service');
 var LoginComponent = (function () {
@@ -17,13 +18,31 @@ var LoginComponent = (function () {
         this.userAuthService = userAuthService;
         this.panelTitle = 'Login';
         this.user = { 'username': '', 'password': '', isLogin: false };
+        this.model = new usermodel_1.UserModel('', '');
         this.messageLabel = '';
     }
-    LoginComponent.prototype.login = function () {
+    LoginComponent.prototype.onUserNameChange = function (value, loginForm) {
+        this.model.username = value;
+        if (loginForm.valid) {
+            this.messageLabel = '';
+        }
+    };
+    LoginComponent.prototype.onPasswordChange = function (value, loginForm) {
+        this.model.password = value;
+        if (loginForm.valid) {
+            this.messageLabel = '';
+        }
+    };
+    LoginComponent.prototype.login = function (loginForm) {
         var _this = this;
-        if (this.user) {
-            if (this.user.password != '' && this.user.username != '') {
+        console.log('login() model==>' + JSON.stringify(loginForm.value));
+        var username = loginForm.value.username;
+        var password = loginForm.value.password;
+        if (username && password) {
+            if (loginForm.value.password != '' && loginForm.value.username != '') {
                 //call backend to verify the credentials
+                this.user.username = username;
+                this.user.password = password;
                 this.userAuthService.login(this.user).subscribe(function (data) {
                     console.log('/login result ==>: ' + data);
                     if (data) {
