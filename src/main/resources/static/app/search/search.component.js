@@ -11,7 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var SearchComponent = (function () {
     function SearchComponent() {
+        this.model = { 'query': '' };
     }
+    SearchComponent.prototype.query = function () {
+        console.log('login() model==>' + this.model.query);
+    };
+    SearchComponent.prototype.oneTextEnter = function (queryString, searchForm) {
+        this.model.query = queryString;
+    };
     SearchComponent = __decorate([
         core_1.Component({
             selector: 'search',
