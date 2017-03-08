@@ -17,6 +17,7 @@ var SearchComponent = (function () {
         console.log('login() model==>' + this.model.query);
     };
     SearchComponent.prototype.oneTextEnter = function (queryString, searchForm) {
+        //TODO: 
         this.model.query = queryString;
     };
     SearchComponent = __decorate([

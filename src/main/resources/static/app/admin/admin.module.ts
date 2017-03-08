@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';//for ngIf and pipe and more...
+
 
 import { AdminAddContent } from './admin-add-content.component';
 import { AdminEditContent } from './admin-edit-content.component';
@@ -13,6 +15,7 @@ import { UserAuthService } from '../services/user-auth.service';
        AdminEditContent
     ],
     imports: [
+        CommonModule,
         RouterModule.forChild([
             {path: 'admin', canActivate: [AdminRouteGuard], component: AdminComponent}
         ])

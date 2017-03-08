@@ -2,7 +2,10 @@
     <form>
         <div class="form-group">
             <label for="tag">Category</label>
-            <input type="text" class="form-control" id="category" placeholder="enter a category">
+            <select class="form-control">
+                <option value="default">Select a Category...</option>
+                <option *ngFor="let cat of categories">{{cat}}</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="tag">Tag</label>
