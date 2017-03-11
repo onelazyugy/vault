@@ -1,6 +1,6 @@
 package com.le.viet.vault.user;
 
-import com.le.viet.vault.dao.DAOIfc;
+import com.le.viet.vault.dao.DAO;
 import com.le.viet.vault.dao.UserDao;
 import com.le.viet.vault.model.User;
 import com.le.viet.vault.validation.GeneralValidation;
@@ -29,7 +29,7 @@ public class UserAuth {
         boolean isLoginDataValid = GeneralValidation.isLoginDataValid(user);
         if(isLoginDataValid) {
             //check against mongodb
-            DAOIfc<User> userDao = new UserDao(mongoTemplate);
+            DAO<User> userDao = new UserDao(mongoTemplate);
             boolean isValidUser = userDao.verify(user);
             //establish a session
             if(isValidUser){

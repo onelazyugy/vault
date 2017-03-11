@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by onelazyguy on 12/29/16.
  */
-public interface DAOIfc<T> {
+public interface DAO<T> {
     boolean add(T t);
     boolean update(T t);
     boolean delete(T t);

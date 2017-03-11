@@ -10,23 +10,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var addentrymodel_1 = require('./addentrymodel');
+var admin_services_1 = require('../services/admin-services');
 var AdminAddContent = (function () {
-    function AdminAddContent() {
-        this.categories = ["bank", "shop"];
+    function AdminAddContent(AdminService) {
+        this.AdminService = AdminService;
+        this.categories = ['bank', 'shop'];
         this.entryModel = new addentrymodel_1.AddEntryModel('default', '', '', '', '', '');
         this.hasCategoryError = false;
+        this.responseMsg = '';
     }
     AdminAddContent.prototype.addEntry = function (addEntryForm) {
+        var _this = this;
         console.log('addEntryForm model==> ' + JSON.stringify(addEntryForm.value));
+        this.AdminService.addEntry(this.entryModel).subscribe(function (data) {
+            console.log('/addEntry result ==>: ' + data);
+            if (data) {
+                _this.responseMsg = 'success';
+            }
+            else {
+                _this.responseMsg = 'unable to add entry';
+            }
+        }, function (error) {
+            console.error('Error addEntry: ' + error);
+            _this.responseMsg = 'error';
+            return false;
+        }, function () {
+            console.log('Completed addEntry request');
+        });
     };
     AdminAddContent.prototype.validateCategory = function (value) {
         if (value === 'default') {
             this.hasCategoryError = true;
-            console.log("hasCategoryError: " + this.hasCategoryError);
         }
         else {
             this.hasCategoryError = false;
-            console.log("hasCategoryError: " + this.hasCategoryError);
         }
     };
     AdminAddContent.prototype.onTagInputChange = function (value, addEntryForm) {
@@ -47,9 +64,10 @@ var AdminAddContent = (function () {
     AdminAddContent = __decorate([
         core_1.Component({
             selector: 'admin-add',
-            templateUrl: 'app/admin/admin-add-content.component.html'
+            templateUrl: 'app/admin/admin-add-content.component.html',
+            providers: [admin_services_1.AdminService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [admin_services_1.AdminService])
     ], AdminAddContent);
     return AdminAddContent;
 }());

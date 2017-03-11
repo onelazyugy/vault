@@ -16,6 +16,9 @@ public class AdminEntry {
     private String category;
     private String tag;
     private String password;
+    private String username;
+    private String comment;
+
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private Date createdDate;
 
@@ -59,6 +62,22 @@ public class AdminEntry {
         this.category = category;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     @Override
     public String toString() {
         return "AdminEntry{" +
@@ -66,6 +85,8 @@ public class AdminEntry {
                 ", category='" + category + '\'' +
                 ", tag='" + tag + '\'' +
                 ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", comment='" + comment + '\'' +
                 ", createdDate=" + createdDate +
                 '}';
     }

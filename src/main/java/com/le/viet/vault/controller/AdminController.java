@@ -1,7 +1,7 @@
 package com.le.viet.vault.controller;
 
 import com.le.viet.vault.dao.AdminDao;
-import com.le.viet.vault.dao.DAOIfc;
+import com.le.viet.vault.dao.DAO;
 import com.le.viet.vault.model.AdminEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +23,11 @@ import javax.servlet.http.HttpServletRequest;
 public class AdminController {
     private final Logger LOG = LoggerFactory.getLogger(AdminController.class);
     @Autowired
-    private MongoTemplate mongoTemplate;
+    private AdminDao adminDao;
 
     @RequestMapping(value = "/addEntry", method = RequestMethod.POST,  produces= MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Boolean addEntry(@RequestBody AdminEntry adminEntry, HttpServletRequest red){
-        DAOIfc dao = new AdminDao(mongoTemplate);
-        boolean isAddSuccess = dao.add(adminEntry);
-        return true;
+    public Boolean addEntry(@RequestBody AdminEntry adminEntry){
+        boolean isAddSuccess = adminDao.add(adminEntry);
+        return isAddSuccess;
     }
 }

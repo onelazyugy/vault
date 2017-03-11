@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by onelazyguy on 12/29/16.
  */
-public class UserDao implements DAOIfc<User> {
+public class UserDao implements DAO<User> {
     private final Logger LOG = LoggerFactory.getLogger(UserDao.class);
     private MongoTemplate mongoTemplate;
 

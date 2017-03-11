@@ -1,6 +1,6 @@
 package com.le.viet.vault.controller;
 
-import com.le.viet.vault.dao.DAOIfc;
+import com.le.viet.vault.dao.DAO;
 import com.le.viet.vault.dao.UserDao;
 import com.le.viet.vault.model.User;
 import com.le.viet.vault.user.UserAuth;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/rs")
@@ -72,14 +71,14 @@ public class VaultController {
 
 	@RequestMapping(value = "/getUserStatus", method = RequestMethod.POST)
 	public boolean getUserStatus(@RequestBody User user){
-		DAOIfc<User> dao = new UserDao(mongoTemplate);
+		DAO<User> dao = new UserDao(mongoTemplate);
 		boolean isUserValid = dao.verify(user);
 		return isUserValid;
 	}
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public boolean addUser(@RequestBody User user){
-		DAOIfc<User> dao = new UserDao(mongoTemplate);
+		DAO<User> dao = new UserDao(mongoTemplate);
 		boolean isUserValid = dao.add(user);
 		return isUserValid;
 	}

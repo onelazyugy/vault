@@ -1,7 +1,7 @@
 <div style="padding:5px;">
     <form #addEntryForm="ngForm" (submit)="addEntry(addEntryForm)" novalidate>
         <div class="form-group" [class.has-error]="hasCategoryError">
-            <label for="tag">Category</label>
+            <label for="category">Category</label>
             <select class="form-control" #category name="category"
                     (blur)="validateCategory(category.value)" 
                     (change)="validateCategory(category.value)"
@@ -9,6 +9,9 @@
                 <option value="default">Select a Category...</option>
                 <option *ngFor="let cat of categories">{{cat}}</option>
             </select>
+            <div *ngIf="hasCategoryError" class="alert alert-danger">
+                An valid option must be selected.
+            </div>
         </div>
         <div class="form-group" [class.has-error]="tag.invalid && tag.dirty">
             <label class="control-label" for="tagId">Tag</label>
@@ -49,8 +52,8 @@
         </div>
         <p class="tpbutton btn-toolbar text-center pull-right">
             <button type="submit" class="btn btn-warning pull-right">CLEAR</button>
-            <button type="submit" class="btn btn-primary pull-right" [disabled]="addEntryForm.invalid">SAVE</button>
+            <button type="submit" class="btn btn-primary pull-right" [disabled]="addEntryForm.invalid || hasCategoryError">SAVE</button>
         </p>
-        add entry model: {{entryModel | json}} hasCategoryError: {{hasCategoryError}}
+        {{responseMsg}}
     </form>
 </div>
