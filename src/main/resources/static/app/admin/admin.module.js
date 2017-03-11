@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var common_1 = require('@angular/common'); //for ngIf and pipe and more...
+var forms_1 = require('@angular/forms'); //for ngModel
 var admin_add_content_component_1 = require('./admin-add-content.component');
 var admin_edit_content_component_1 = require('./admin-edit-content.component');
 var admin_component_1 = require('./admin.component');
@@ -26,6 +27,7 @@ var AdminModule = (function () {
                 admin_edit_content_component_1.AdminEditContent
             ],
             imports: [
+                forms_1.FormsModule,
                 common_1.CommonModule,
                 router_1.RouterModule.forChild([
                     { path: 'admin', canActivate: [admin_guard_service_1.AdminRouteGuard], component: admin_component_1.AdminComponent }
