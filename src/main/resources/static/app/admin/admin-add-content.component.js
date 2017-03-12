@@ -18,21 +18,37 @@ var AdminAddContent = (function () {
         this.entryModel = new addentrymodel_1.AddEntryModel('default', '', '', '', '', '');
         this.hasCategoryError = false;
         this.responseMsg = '';
+        this.successordanger = '';
+        this.success = false;
     }
     AdminAddContent.prototype.addEntry = function (addEntryForm) {
         var _this = this;
+        var password = addEntryForm.value.password;
+        var confirmPassword = addEntryForm.value.passwordConfirm;
+        console.log('password: ' + password + " confirm: " + confirmPassword);
+        if (password !== confirmPassword) {
+            this.success = true;
+            this.successordanger = 'danger';
+            this.responseMsg = 'passwords do not match. Try again!';
+            return false;
+        }
         console.log('addEntryForm model==> ' + JSON.stringify(addEntryForm.value));
         this.AdminService.addEntry(this.entryModel).subscribe(function (data) {
             console.log('/addEntry result ==>: ' + data);
             if (data) {
+                _this.success = true;
+                _this.successordanger = 'success';
                 _this.responseMsg = 'success';
+                addEntryForm.reset();
             }
             else {
+                _this.successordanger = 'danger';
                 _this.responseMsg = 'unable to add entry';
             }
         }, function (error) {
             console.error('Error addEntry: ' + error);
-            _this.responseMsg = 'error';
+            _this.responseMsg = 'error saving entry.';
+            _this.successordanger = 'danger';
             return false;
         }, function () {
             console.log('Completed addEntry request');

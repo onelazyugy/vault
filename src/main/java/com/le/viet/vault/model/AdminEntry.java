@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by onelazyguy on 12/31/16.
  */
-@Document(collection = "admin-entries")
+@Document(collection = "admindocument")
 public class AdminEntry {
     @Id
     private String id;
